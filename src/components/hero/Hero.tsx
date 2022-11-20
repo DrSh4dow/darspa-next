@@ -1,9 +1,10 @@
 import Button from "../button/Button";
 import InstagramPost from "../instagramPost/InstagramPost";
+import { instagramPath } from "./svgPath";
 
 export default function Hero() {
   return (
-    <section className="relative w-full shadow-sm shadow-slate-600/40">
+    <section className="relative w-full shadow-sm shadow-slate-600/40 lg:shadow-none">
       <div className="absolute -z-10 h-full w-full bg-slate-50/75 lg:hidden" />
       <img
         className="absolute right-0 top-0 -z-20 h-full sm:hidden"
@@ -20,7 +21,7 @@ export default function Hero() {
         src="/images/banner.png"
         alt="entrena cuerpo y mente de forma sana con Dar Spa"
       />
-      <div className="mx-auto grid max-w-screen-2xl grid-cols-1 gap-4 px-2 pt-20 pb-10 sm:gap-8 sm:px-4 sm:pt-32 lg:grid-cols-2 lg:pt-10 lg:pb-20">
+      <div className="mx-auto grid max-w-screen-2xl grid-cols-1 gap-4 px-2 pt-20 pb-10 sm:gap-8 sm:px-4 sm:pt-32 lg:grid-cols-2 lg:pt-10 lg:pb-56">
         <div className="hidden overflow-hidden pb-20 lg:block">
           <img
             src="/images/group-logo.png"
@@ -28,7 +29,7 @@ export default function Hero() {
           />
         </div>
         <div className="lg:hidden">
-          <h1 className="mb-1 font-montserrat text-4xl font-bold text-gray-900 sm:text-5xl">
+          <h1 className="mb-1 font-montserrat text-4xl font-bold text-slate-900 sm:text-5xl">
             Clínica <br className="sm:hidden" />
             Dar Spa
           </h1>
@@ -46,12 +47,24 @@ export default function Hero() {
             <InstagramPost />
             <InstagramPost />
             <InstagramPost />
+            <div className="col-span-2 flex justify-end">
+              <a
+                className="flex items-center justify-end gap-1"
+                href="https://www.instagram.com/darspa.cl/"
+                target="_blank"
+              >
+                <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
+                  <path d={instagramPath} />
+                </svg>
+                <h3 className="text-lg font-black text-teal-600">darspa.cl</h3>
+              </a>
+            </div>
           </div>
         </div>
         <div className="col-start-1 flex items-center justify-start">
           <div className="rounded-lg lg:bg-slate-200/40 lg:p-4">
             <article className="max-w-sm rounded-tr-sm rounded-tl-[40px] rounded-br-[40px] rounded-bl-sm bg-white p-4 shadow-sm shadow-slate-600/40 lg:max-w-md lg:p-6">
-              <p className="text-lg leading-snug text-gray-900">
+              <p className="text-lg leading-snug text-slate-900">
                 Si ésta es tu
                 <span className="font-bold"> “primera consulta”</span> en
                 nuestra clínica te recomendamos que descargues las órdenes de
@@ -70,6 +83,20 @@ export default function Hero() {
             <Button title="2. Agendar Hora" />
           </div>
         </div>
+      </div>
+      <div className="absolute bottom-0 left-0 hidden w-full overflow-hidden leading-[0] lg:block">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+          className="relative block h-[73px] w-[calc(170%+1.3px)] rotate-y-180"
+        >
+          <path
+            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+            className="fill-white"
+          ></path>
+        </svg>
       </div>
     </section>
   );
