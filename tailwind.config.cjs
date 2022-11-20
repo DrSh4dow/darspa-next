@@ -15,6 +15,19 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      animation: {
+        fade: "fade-in .5s linear forwards",
+        marquee: "marquee 132s linear infinite",
+      },
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        marquee: {
+          "100%": { transform: "translateY(-50%)" },
+        },
+      },
       fontFamily: {
         montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
       },

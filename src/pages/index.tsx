@@ -3,6 +3,8 @@ import Head from "next/head";
 import Hero from "../components/hero/Hero";
 import NovedadesSection from "../components/novedadesSection/NovedadesSection";
 import SobreNosotrosSection from "../components/sobreNosotrosSection/SobreNosotrosSection";
+import ComentariosSection from "../components/comentariosSection/ComentariosSection";
+import TecnicasSection from "../components/tecnicasSection/TecnicasSection";
 
 const Home: NextPage = () => {
   return (
@@ -23,6 +25,8 @@ const Home: NextPage = () => {
       <Hero />
       <NovedadesSection />
       <SobreNosotrosSection />
+      <ComentariosSection />
+      <TecnicasSection />
     </>
   );
 };

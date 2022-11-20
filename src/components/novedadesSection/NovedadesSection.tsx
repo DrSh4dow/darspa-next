@@ -1,5 +1,5 @@
 import InstagramPost from "../instagramPost/InstagramPost";
-import { instagramPath } from "../hero/svgPath";
+import { instagramPath } from "../../utils/svgPath";
 
 export default function NovedadesSection() {
   return (
@@ -18,6 +18,20 @@ export default function NovedadesSection() {
           href="https://www.instagram.com/darspa.cl/"
           target="_blank"
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-8 w-8 stroke-teal-600"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+            />
+          </svg>
           <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
             <path d={instagramPath} />
           </svg>

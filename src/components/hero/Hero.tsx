@@ -1,6 +1,6 @@
 import Button from "../button/Button";
 import InstagramPost from "../instagramPost/InstagramPost";
-import { instagramPath } from "./svgPath";
+import { instagramPath } from "../../utils/svgPath";
 
 export default function Hero() {
   return (
@@ -31,7 +31,7 @@ export default function Hero() {
         <div className="lg:hidden">
           <h1 className="mb-1 font-montserrat text-4xl font-bold text-slate-900 sm:text-5xl">
             Clínica <br className="sm:hidden" />
-            Dar Spa
+            DarSpa
           </h1>
           <h2 className="font-montserrat text-xl font-bold text-teal-600 sm:text-2xl">
             Modelado Corporal <br />
@@ -40,7 +40,7 @@ export default function Hero() {
         </div>
         <div className="col-start-2 row-span-3 hidden items-start justify-end lg:flex">
           <div className="grid grid-cols-2 gap-6 rounded-lg bg-white/80 p-8">
-            <h2 className="col-span-2 text-2xl font-black text-teal-600">
+            <h2 className="col-span-2 text-2xl font-black text-teal-700">
               Novedades Instagram
             </h2>
             <InstagramPost />
@@ -53,6 +53,20 @@ export default function Hero() {
                 href="https://www.instagram.com/darspa.cl/"
                 target="_blank"
               >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-8 w-8 stroke-teal-600"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                  />
+                </svg>
                 <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
                   <path d={instagramPath} />
                 </svg>
