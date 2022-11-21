@@ -1,7 +1,11 @@
 import InstagramPost from "../instagramPost/InstagramPost";
 import { instagramPath } from "../../utils/svgPath";
 
-export default function NovedadesSection() {
+export default function NovedadesSection({
+  instagramPosts,
+}: {
+  instagramPosts: string[] | [];
+}) {
   return (
     <section className="w-full rounded-bl-[80px] bg-white pt-10 pb-16 shadow-md shadow-slate-600/40 lg:hidden">
       <div className="mx-auto max-w-screen-2xl px-2 sm:px-4">
@@ -9,8 +13,14 @@ export default function NovedadesSection() {
           Novedades Instagram
         </h2>
         <div className="mb-6 flex flex-wrap gap-4">
-          <InstagramPost />
-          <InstagramPost />
+          {instagramPosts.length > 1 ? (
+            instagramPosts.map((url) => <InstagramPost key={url} src={url} />)
+          ) : (
+            <>
+              <InstagramPost />
+              <InstagramPost />
+            </>
+          )}
         </div>
 
         <a

@@ -1,6 +1,11 @@
 import Button from "../button/Button";
+import Image from "next/image";
 import InstagramPost from "../instagramPost/InstagramPost";
 import { instagramPath } from "../../utils/svgPath";
+import womanSmall from "../../../public/images/woman-shape-small.png";
+import womanMid from "../../../public/images/woman-shape-mid.png";
+import banner from "../../../public/images/banner.png";
+import groupLogo from "../../../public/images/group-logo.png";
 
 export default function Hero({
   instagramPosts,
@@ -10,25 +15,28 @@ export default function Hero({
   return (
     <section className="relative w-full shadow-sm shadow-slate-600/40 lg:shadow-none">
       <div className="absolute -z-10 h-full w-full bg-slate-50/75 lg:hidden" />
-      <img
+      <Image
         className="absolute right-0 top-0 -z-20 h-full sm:hidden"
-        src="/images/woman-shape-small.png"
+        src={womanSmall}
         alt="modelado corporal dar spa"
+        placeholder="blur"
       />
-      <img
+      <Image
         className="absolute right-0 top-0 -z-20 hidden h-full sm:block lg:hidden"
-        src="/images/woman-shape-mid.png"
+        src={womanMid}
         alt="baja la barriga con dar spa"
+        placeholder="blur"
       />
-      <img
+      <Image
         className="absolute -z-20 hidden h-full w-full object-cover lg:block"
-        src="/images/banner.png"
+        src={banner}
         alt="entrena cuerpo y mente de forma sana con Dar Spa"
+        placeholder="blur"
       />
       <div className="mx-auto grid max-w-screen-2xl grid-cols-1 gap-4 px-2 pt-20 pb-10 sm:gap-8 sm:px-4 sm:pt-32 lg:grid-cols-2 lg:pt-10 lg:pb-56">
         <div className="hidden overflow-hidden pb-20 lg:block">
-          <img
-            src="/images/group-logo.png"
+          <Image
+            src={groupLogo}
             alt="logo de dar spa clinica estetica de modelado corporal"
           />
         </div>

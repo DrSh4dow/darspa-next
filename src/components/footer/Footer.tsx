@@ -1,14 +1,14 @@
 import { facebookPath, instagramPath, whatsappPath } from "../../utils/svgPath";
+import Image from "next/image";
+import logoFooter from "../../../public/images/logo-footer.png";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-slate-200">
       <div className="relative mx-auto max-w-screen-2xl py-10 px-2 sm:px-4">
         <div className="grid grid-cols-2 justify-between gap-4 sm:grid-cols-3">
           <div className="col-start-1 row-start-3 flex items-center justify-end px-4 sm:row-span-2 sm:row-start-1 sm:justify-start">
-            <img
-              src="/images/logo-footer.png"
-              alt="alcanza tu peso ideal con darspa"
-            />
+            <Image src={logoFooter} alt="alcanza tu peso ideal con darspa" />
           </div>
           <div className="col-span-2 flex items-center justify-center sm:col-span-1">
             <div className="grid grid-cols-2 items-center justify-center gap-4 sm:gap-2 md:gap-6 lg:gap-8">

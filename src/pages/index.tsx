@@ -27,7 +27,7 @@ const Home: NextPage = ({ instagramPosts }) => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Hero instagramPosts={instagramPosts} />
-      <NovedadesSection />
+      <NovedadesSection instagramPosts={instagramPosts} />
       <SobreNosotrosSection />
       <ComentariosSection />
       <TecnicasSection />

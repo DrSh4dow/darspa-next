@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import logoHeader from "../../../public/images/logo-header.png";
 
 export default function Header() {
   const router = useRouter();
@@ -65,10 +67,7 @@ export default function Header() {
           </Link>
         </nav>
         <div>
-          <img
-            src="/images/logo-header.png"
-            alt="dar spa, centro nutricional avanzado"
-          />
+          <Image src={logoHeader} alt="dar spa, centro nutricional avanzado" />
         </div>
       </div>
     </header>
