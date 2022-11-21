@@ -27,7 +27,7 @@ export default function Header() {
         <nav className="hidden items-center justify-between gap-4 text-2xl font-bold text-teal-600 sm:flex lg:gap-6">
           <Link
             href="/"
-            className={router.pathname.startsWith("/") ? "text-blue-700" : ""}
+            className={router.pathname === "/" ? "text-blue-700" : ""}
           >
             Inicio
           </Link>
@@ -48,12 +48,20 @@ export default function Header() {
             Nosotros
           </Link>
           <Link
-            href="/tecnicas"
+            href="/servicios"
             className={
-              router.pathname.startsWith("/tecnicas") ? "text-blue-700" : ""
+              router.pathname.startsWith("/servicios") ? "text-blue-700" : ""
             }
           >
-            Tecnicas
+            Servicios
+          </Link>
+          <Link
+            href="/examenes"
+            className={
+              router.pathname.startsWith("/examenes") ? "text-blue-700" : ""
+            }
+          >
+            Examenes
           </Link>
         </nav>
         <div>

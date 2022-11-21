@@ -5,6 +5,8 @@ import NovedadesSection from "../components/novedadesSection/NovedadesSection";
 import SobreNosotrosSection from "../components/sobreNosotrosSection/SobreNosotrosSection";
 import ComentariosSection from "../components/comentariosSection/ComentariosSection";
 import TecnicasSection from "../components/tecnicasSection/TecnicasSection";
+import CTA from "../components/cta/CTA";
+import FAQ from "../components/faq/FAQ";
 
 const Home: NextPage = () => {
   return (
@@ -27,6 +29,8 @@ const Home: NextPage = () => {
       <SobreNosotrosSection />
       <ComentariosSection />
       <TecnicasSection />
+      <FAQ />
+      <CTA />
     </>
   );
 };
