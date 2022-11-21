@@ -10,8 +10,16 @@ const config = {
   reactStrictMode: true,
   swcMinify: true,
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
+    locales: ["es"],
+    defaultLocale: "es",
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.cdninstagram.com",
+      },
+    ],
   },
 };
 export default config;

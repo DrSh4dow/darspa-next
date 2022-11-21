@@ -7,8 +7,10 @@ import ComentariosSection from "../components/comentariosSection/ComentariosSect
 import TecnicasSection from "../components/tecnicasSection/TecnicasSection";
 import CTA from "../components/cta/CTA";
 import FAQ from "../components/faq/FAQ";
+import { env } from "../env/server.mjs";
 
-const Home: NextPage = () => {
+// @ts-ignore
+const Home: NextPage = ({ instagramPosts }) => {
   return (
     <>
       <Head>
@@ -24,7 +26,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Hero />
+      <Hero instagramPosts={instagramPosts} />
       <NovedadesSection />
       <SobreNosotrosSection />
       <ComentariosSection />
@@ -34,5 +36,39 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  let urls: string[] = [];
+  const instagramToken = env.INSTAGRAM_TOKEN;
+
+  try {
+    const res = await fetch(
+      `https://graph.instagram.com/me/media?fields=id&limit=4&access_token=${instagramToken}`
+    );
+
+    if (res.ok) {
+      const data = await res.json();
+      const idArray: { id: string }[] = data.data;
+      for (let i = 0; i < idArray.length; i++) {
+        const mediaRes = await fetch(
+          `https://graph.instagram.com/${idArray[i]?.id}?fields=media_url&access_token=${instagramToken}`
+        );
+        if (mediaRes.ok) {
+          const postRawData: { media_url: string } = await mediaRes.json();
+          urls.push(postRawData.media_url);
+        }
+      }
+    }
+  } catch (e) {
+    console.log("some unexpected error occurred: ", e);
+  }
+
+  return {
+    props: {
+      instagramPosts: urls,
+    },
+    revalidate: 86400,
+  };
+}
 
 export default Home;

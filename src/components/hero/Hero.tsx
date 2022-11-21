@@ -2,7 +2,11 @@ import Button from "../button/Button";
 import InstagramPost from "../instagramPost/InstagramPost";
 import { instagramPath } from "../../utils/svgPath";
 
-export default function Hero() {
+export default function Hero({
+  instagramPosts,
+}: {
+  instagramPosts: string[] | [];
+}) {
   return (
     <section className="relative w-full shadow-sm shadow-slate-600/40 lg:shadow-none">
       <div className="absolute -z-10 h-full w-full bg-slate-50/75 lg:hidden" />
@@ -43,10 +47,16 @@ export default function Hero() {
             <h2 className="col-span-2 text-2xl font-black text-teal-700">
               Novedades Instagram
             </h2>
-            <InstagramPost />
-            <InstagramPost />
-            <InstagramPost />
-            <InstagramPost />
+            {instagramPosts.length > 1 ? (
+              instagramPosts.map((url) => <InstagramPost key={url} src={url} />)
+            ) : (
+              <>
+                <InstagramPost />
+                <InstagramPost />
+                <InstagramPost />
+                <InstagramPost />
+              </>
+            )}
             <div className="col-span-2 flex justify-end">
               <a
                 className="flex items-center justify-end gap-1"
