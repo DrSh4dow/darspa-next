@@ -7,7 +7,7 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="fixed z-10 h-14 w-full bg-slate-50 shadow-sm shadow-slate-600/40">
+    <header className="fixed z-40 h-14 w-full bg-slate-50 shadow-sm shadow-slate-600/40">
       <div className="mx-auto flex h-full max-w-screen-2xl items-center justify-between px-2 sm:px-4">
         <div className="flex cursor-pointer items-center justify-start gap-1 rounded-3xl border border-teal-600 py-1 px-3 sm:hidden">
           <svg

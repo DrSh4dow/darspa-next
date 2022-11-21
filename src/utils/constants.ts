@@ -184,4 +184,39 @@ export const comentarios: { name: string; comment: string }[] = [
     comment:
       "Consulta muy relajada , cálida, buena explicación del tratamiento, dependencia muy acogedora , amabilidad en el personal",
   },
+  {
+    name: "Claudia Ballesteros Barri",
+    comment:
+      "Excelencia en la atención , preciso en los tratamientos , muy acogedora la atención de la Secretaria y María José en el tratamiento . Doctor Moretti un trabajo en detalle , muy minucioso y eficaz . Felicitaciones",
+  },
+  {
+    name: "Victor.",
+    comment:
+      "Muy buena la atención, muy claro en lo expuesto.. fui atendido a la hora y las instalaciones muy buenas",
+  },
+  {
+    name: "Gloria paola",
+    comment:
+      "Excelente atencion. Recomiendo este centro medico es muy bueno, te explican todo bien detallado y te atienden excelente. Y buena atencion.",
+  },
+  {
+    name: "María José",
+    comment:
+      "Buena atención muy amable tanto del profesional como de la secretaria, me atendio sin tener hora previa.",
+  },
+  {
+    name: "Marcia Meza Velasquez",
+    comment:
+      "Excelente atención, empezando por la tens y terminando con el doctor. Me quedé super satisfecha y sin duda volvería al lugar",
+  },
+  {
+    name: "Javier sepulveda",
+    comment:
+      "Nada que criticar la atencion ,explicacion y tratamiento de acorde a la necesidad agradable en todo sentido",
+  },
+  {
+    name: "Dante",
+    comment:
+      "Excelente atención. Ambiente tranquilo y propuestas a tratamiento explicadas claramente. Se recomienda totalmente.",
+  },
 ];

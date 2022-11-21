@@ -8,14 +8,16 @@ export default function InstagramPost({
   alt?: string;
 }) {
   return (
-    <article className="cursor-pointer rounded-lg bg-slate-50 p-4 shadow-md">
-      <Image
-        className="h-80 w-80 object-cover lg:h-52 lg:w-52"
-        width={240}
-        height={240}
-        src={src}
-        alt={alt}
-      />
+    <article className="group cursor-pointer rounded-lg bg-slate-50 p-4 shadow-md">
+      <div className="h-80 w-80 overflow-hidden lg:h-52 lg:w-52">
+        <Image
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          width={240}
+          height={240}
+          src={src}
+          alt={alt}
+        />
+      </div>
     </article>
   );
 }
