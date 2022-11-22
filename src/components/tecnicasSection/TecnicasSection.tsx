@@ -7,7 +7,9 @@ export default function TecnicasSection() {
   const [servicios, setServicios] = useState(servRaw);
 
   useEffect(() => {
-    setServicios(shuffle(servicios));
+    setServicios(
+      shuffle(servicios.filter((s) => s.tipo === "modeladoCorporal"))
+    );
   }, []);
 
   return (

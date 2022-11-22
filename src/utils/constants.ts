@@ -372,4 +372,43 @@ export const servicios: {
     alt: "entrenamiento altamente personalizado para conseguir el mejor resultado",
     tipo: "otros",
   },
+  {
+    nombre: "MANICURE & PEDICURE",
+    descripcion:
+      "Embellecimiento para el área de manos y pies con productos profesionales. Esmaltado permanente, con productos como IBD y CND. Puedes agregar técnicas como degradé, diseños a mano alzada, cristales y decoración.",
+    src: "/images/terapias/manicure.png",
+    alt: "manicure y pedicure en DarSpa",
+    tipo: "cejas",
+  },
+  {
+    nombre: "LIFTING & ONDULACION",
+    descripcion:
+      "Ambas técnicas son para todo tipo de pestañas. Tienen el objetivo de darle forma a tus pestañas, realzando y definiendo la mirada. Consulta cuál de estas 2  técnicas es más recomendable para ti!",
+    src: "/images/terapias/lifting.png",
+    alt: "lifting y ondulado de pestañas",
+    tipo: "cejas",
+  },
+  {
+    nombre: "Perfilado & Planchado",
+    descripcion:
+      "El perfilado de cejas consiste en sacar el exceso de vello con el objetivo de que el rostro se vea más armónico y las cejas más definidas. En el  planchado de cejas se usa un producto para que estas queden fijas dando forma y definición.",
+    src: "/images/terapias/perfilado.png",
+    alt: "perfilado y planchado de cejas",
+    tipo: "cejas",
+  },
+];
+
+export const months = [
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
 ];

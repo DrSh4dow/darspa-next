@@ -1,8 +1,18 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import TeamCard from "../../components/teamCard/TeamCard";
+import * as prismic from "@prismicio/client";
 
-const Nosotros: NextPage = () => {
+// @ts-ignore
+const Nosotros: NextPage = ({
+  filteredProfesionales,
+}: {
+  filteredProfesionales: {
+    nombre: string;
+    titulo: string;
+    imagenSrc: string;
+  }[];
+}) => {
   return (
     <>
       <Head>
@@ -63,15 +73,40 @@ const Nosotros: NextPage = () => {
             Conoce al equipo que hace posible tus tratamientos
           </p>
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-y-16 md:grid-cols-3 [&:not(:focus-visible)]:focus:outline-none">
-            <TeamCard />
-            <TeamCard />
-            <TeamCard />
-            <TeamCard />
+            {filteredProfesionales.map((p) => (
+              <TeamCard
+                nombre={p.nombre}
+                titulo={p.titulo}
+                key={p.nombre}
+                src={p.imagenSrc}
+              />
+            ))}
           </div>
         </div>
       </section>
     </>
   );
 };
+
+export async function getStaticProps() {
+  const client = prismic.createClient("darspa");
+  const profesionales = await client.getAllByType("resumen_profesional");
+  const filteredProfesionales = profesionales
+    .map(({ data }) => {
+      return {
+        nombre: data.profesional[0].text ?? "Nombre",
+        titulo: data.titulo[0].text ?? "Titulo",
+        imagenSrc: data.fotopersonal.url ?? "/images/stones.png",
+        priority: data.ordenaparicion ?? 5,
+      };
+    })
+    .sort((x, y) => (x.priority > y.priority ? 1 : -1));
+
+  return {
+    props: {
+      filteredProfesionales,
+    },
+  };
+}
 
 export default Nosotros;

@@ -1,8 +1,20 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import NoticiaCard from "../../components/noticiaCard/NoticiaCard";
+import * as prismic from "@prismicio/client";
+import { months } from "../../utils/constants";
 
-const Noticias: NextPage = () => {
+// @ts-ignore
+const Noticias: NextPage = ({
+  filteredNoticias,
+}: {
+  filteredNoticias: {
+    titulo: string;
+    cuerpo: string;
+    imagenSrc: string;
+    date: string;
+  }[];
+}) => {
   return (
     <>
       <Head>
@@ -33,10 +45,16 @@ const Noticias: NextPage = () => {
           </h3>
           <div className="md:border-l md:border-slate-100 md:pl-6 ">
             <div className="flex max-w-3xl flex-col space-y-16">
-              <NoticiaCard />
-              <NoticiaCard />
-              <NoticiaCard />
-              <NoticiaCard />
+              {filteredNoticias.map((noticia) => {
+                return (
+                  <NoticiaCard
+                    cuerpo={noticia.cuerpo}
+                    date={noticia.date}
+                    tituloNoticia={noticia.titulo}
+                    key={noticia.date + noticia.titulo}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
@@ -44,5 +62,34 @@ const Noticias: NextPage = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const client = prismic.createClient("darspa");
+  const noticias = await client.getAllByType("noticia", {
+    orderings: {
+      field: "document.first_publication_date",
+      direction: "desc",
+    },
+  });
+
+  const filteredNoticias = noticias.map(({ data, first_publication_date }) => {
+    let [year, month, day] = first_publication_date
+      .split("T")[0]
+      ?.split("-") ?? ["", "", ""];
+    month = months[Number(month) - 1];
+
+    return {
+      titulo: data.titulo[0].text ?? "Titulo",
+      cuerpo: data.cuerpo[0].text ?? "",
+      date: `${day} de ${month}, ${year}`,
+    };
+  });
+
+  return {
+    props: {
+      filteredNoticias,
+    },
+  };
+}
 
 export default Noticias;

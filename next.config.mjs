@@ -19,6 +19,10 @@ const config = {
         protocol: "https",
         hostname: "**.cdninstagram.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.prismic.io",
+      },
     ],
   },
 };
