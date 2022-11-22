@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import TecnicasCard from "../tecnicasCard/TecnicasCard";
+import ServiciosCard from "../serviciosCard/ServiciosCard";
 
 export default function TecnicasSection() {
   const [tecnicas, setTecnicas] = useState([]);
@@ -10,12 +10,11 @@ export default function TecnicasSection() {
     <section>
       <div className="mx-auto max-w-screen-2xl py-20 px-2 sm:px-4">
         <h2 className="mb-6 text-center text-3xl font-black text-teal-900 lg:mb-12 lg:text-5xl">
-          Algunas De Nuestras Tecnicas
+          Algunos De Nuestros Servicios
         </h2>
-        <div className="flex w-full flex-wrap items-center justify-center gap-10">
-          <TecnicasCard />
-          <TecnicasCard />
-          <TecnicasCard />
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8">
+          <ServiciosCard />
+          <ServiciosCard />
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import ServiciosCard from "../../components/serviciosCard/ServiciosCard";
 
 const Servicios: NextPage = () => {
   return (
@@ -17,7 +18,20 @@ const Servicios: NextPage = () => {
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <h1>Servicios</h1>
+      <section>
+        <div className="mx-auto max-w-screen-2xl py-20 px-2 sm:px-4">
+          <h1 className="mb-10 text-center text-3xl font-black text-teal-900 lg:mb-20 lg:text-5xl">
+            Servicios, Terapias, & Prestaciones
+          </h1>
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8">
+            <ServiciosCard />
+            <ServiciosCard />
+            <ServiciosCard />
+            <ServiciosCard />
+            <ServiciosCard />
+          </div>
+        </div>
+      </section>
     </>
   );
 };
