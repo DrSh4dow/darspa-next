@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import ServiciosCard from "../serviciosCard/ServiciosCard";
+import { shuffle } from "../../utils/util";
+import { servicios as servRaw } from "../../utils/constants";
 
 export default function TecnicasSection() {
-  const [tecnicas, setTecnicas] = useState([]);
+  const [servicios, setServicios] = useState(servRaw);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setServicios(shuffle(servicios));
+  }, []);
 
   return (
     <section>
@@ -13,8 +17,19 @@ export default function TecnicasSection() {
           Algunos De Nuestros Servicios
         </h2>
         <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8">
-          <ServiciosCard />
-          <ServiciosCard />
+          <ServiciosCard
+            descripcion={servicios[0]?.descripcion ?? ""}
+            nombre={servicios[0]?.nombre ?? ""}
+            src={servicios[0]?.src ?? ""}
+            alt={servicios[0]?.alt ?? ""}
+            reverse
+          />
+          <ServiciosCard
+            descripcion={servicios[1]?.descripcion ?? ""}
+            nombre={servicios[1]?.nombre ?? ""}
+            src={servicios[1]?.src ?? ""}
+            alt={servicios[1]?.alt ?? ""}
+          />
         </div>
       </div>
     </section>

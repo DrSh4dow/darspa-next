@@ -54,11 +54,14 @@ const Nosotros: NextPage = () => {
           </div>
         </div>
       </section>
-      <section className="bg-slate-100">
+      <section className="bg-slate-50">
         <div className="mx-auto max-w-screen-2xl py-20 px-2 sm:px-4">
-          <h1 className="mb-10 text-2xl font-black text-teal-900 lg:mb-20 lg:text-4xl">
+          <h1 className=" mb-2 text-2xl font-black text-teal-900  lg:text-4xl">
             Conoce a Nuestro Equipo
           </h1>
+          <p className="mb-10 text-left text-sm font-bold text-slate-600 lg:mb-20">
+            Conoce al equipo que hace posible tus tratamientos
+          </p>
           <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-y-16 md:grid-cols-3 [&:not(:focus-visible)]:focus:outline-none">
             <TeamCard />
             <TeamCard />

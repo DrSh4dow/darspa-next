@@ -32,7 +32,6 @@ const Home: NextPage = ({ instagramPosts }) => {
       <ComentariosSection />
       <TecnicasSection />
       <FAQ />
-      <CTA />
     </>
   );
 };
