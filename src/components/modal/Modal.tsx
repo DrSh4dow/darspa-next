@@ -8,14 +8,14 @@ type ModalProps = {
 };
 
 export default function Modal({ isOpen, setIsOpen }: ModalProps) {
-  const cancelButtonRef = useRef(null);
+  const nombreRef = useRef(null);
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-10"
-        initialFocus={cancelButtonRef}
+        className="relative z-50"
+        initialFocus={nombreRef}
         onClose={setIsOpen}
       >
         <Transition.Child
@@ -57,13 +57,110 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                       >
                         Ingrese Sus Datos
                       </Dialog.Title>
-                      <div className="mt-2">
+                      <div className="mt-2 mb-6">
                         <p className="text-sm text-gray-500">
                           Ingrese sus datos a continuacion para generar sus
                           solicitudes de examen, los cuales debera realizar
                           previamente y luego presentar en su primera consulta.
                         </p>
                       </div>
+                      <form action="#" method="POST">
+                        <div className="grid grid-cols-6 gap-6">
+                          <div className="col-span-6 sm:col-span-3">
+                            <label
+                              htmlFor="nombre-completo"
+                              className="block text-sm font-medium text-gray-700"
+                            >
+                              Nombre completo
+                            </label>
+                            <input
+                              type="text"
+                              name="nombre-completo"
+                              id="nombre-completo"
+                              autoComplete="given-name"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                              ref={nombreRef}
+                            />
+                          </div>
+
+                          <div className="col-span-6 sm:col-span-3">
+                            <label
+                              htmlFor="rut"
+                              className="block text-sm font-medium text-gray-700"
+                            >
+                              RUT
+                            </label>
+                            <input
+                              type="text"
+                              name="rut"
+                              id="rut"
+                              autoComplete="family-name"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            />
+                          </div>
+
+                          <div className="col-span-6 sm:col-span-3">
+                            <label
+                              htmlFor="edad"
+                              className="block text-sm font-medium text-gray-700"
+                            >
+                              Edad
+                            </label>
+                            <input
+                              type="number"
+                              name="edad"
+                              id="edad"
+                              autoComplete="age"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            />
+                          </div>
+                          <div className="col-span-6 sm:col-span-3">
+                            <label
+                              htmlFor="direccion"
+                              className="block text-sm font-medium text-gray-700"
+                            >
+                              Dirección
+                            </label>
+                            <input
+                              type="text"
+                              name="direccion"
+                              id="direccion"
+                              autoComplete="address"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            />
+                          </div>
+                          <div className="col-span-6 sm:col-span-3">
+                            <label
+                              htmlFor="email"
+                              className="block text-sm font-medium text-gray-700"
+                            >
+                              Correo electronico
+                            </label>
+                            <input
+                              type="email"
+                              name="email"
+                              id="email"
+                              autoComplete="email"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            />
+                          </div>
+                          <div className="col-span-6 sm:col-span-3">
+                            <label
+                              htmlFor="celular"
+                              className="block text-sm font-medium text-gray-700"
+                            >
+                              Celular
+                            </label>
+                            <input
+                              type="text"
+                              name="celular"
+                              id="celular"
+                              autoComplete="phone"
+                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            />
+                          </div>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -79,7 +176,6 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                     onClick={() => setIsOpen(false)}
-                    ref={cancelButtonRef}
                   >
                     Cancelar
                   </button>

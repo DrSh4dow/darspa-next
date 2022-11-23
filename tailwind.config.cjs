@@ -33,5 +33,5 @@ module.exports = {
       },
     },
   },
-  plugins: [rotateY],
+  plugins: [rotateY, require("@tailwindcss/forms")],
 };

@@ -29,10 +29,7 @@ export default function InstagramPost({
         </div>
       </article>
       <Transition show={isOpen} as={Fragment}>
-        <Dialog onClose={() => setIsOpen(false)}>
-          {/*
-          Use one Transition.Child to apply one transition to the backdrop...
-        */}
+        <Dialog className={"z-50"} onClose={() => setIsOpen(false)}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -42,13 +39,8 @@ export default function InstagramPost({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-75" />
+            <div className="fixed inset-0 z-40 bg-gray-500 bg-opacity-75" />
           </Transition.Child>
-
-          {/*
-          ...and another Transition.Child to apply a separate transition
-          to the contents.
-        */}
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -58,7 +50,7 @@ export default function InstagramPost({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="fixed inset-0 flex items-center justify-center p-4">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
               <Dialog.Panel className="rounded-xl bg-white p-6 shadow sm:p-8 md:p-10">
                 <Dialog.Title className="mb-6 text-xl font-black text-teal-900 sm:mb-8 lg:text-3xl">
                   Instagram Post
