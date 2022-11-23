@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import Button from "../button/Button";
 
 export default function InstagramPost({
   src = "/images/spin.gif",
@@ -41,7 +42,7 @@ export default function InstagramPost({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black/30" />
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75" />
           </Transition.Child>
 
           {/*
@@ -62,7 +63,7 @@ export default function InstagramPost({
                 <Dialog.Title className="mb-6 text-xl font-black text-teal-900 sm:mb-8 lg:text-3xl">
                   Instagram Post
                 </Dialog.Title>
-                <div className="h-80 w-80 overflow-hidden rounded-lg sm:h-96 sm:w-96 md:h-[512px] md:w-[512px]">
+                <div className="h-auto w-80 overflow-hidden rounded-lg sm:w-[512px]">
                   <Image
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     width={512}
@@ -70,6 +71,9 @@ export default function InstagramPost({
                     src={src}
                     alt={alt}
                   />
+                </div>
+                <div className="mt-10 flex items-center justify-center">
+                  <Button title="Cerrar" onClick={() => setIsOpen(!isOpen)} />
                 </div>
               </Dialog.Panel>
             </div>

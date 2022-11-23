@@ -34,7 +34,7 @@ export default function Drawer({
             leaveFrom="opacity-30"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 z-40 bg-black bg-opacity-75" />
+            <Dialog.Overlay className="fixed inset-0 z-40 bg-gray-500 bg-opacity-75" />
           </Transition.Child>
           <Transition.Child
             as={Fragment}
