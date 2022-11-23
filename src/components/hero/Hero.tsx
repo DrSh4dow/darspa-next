@@ -1,4 +1,5 @@
 import Button from "../button/Button";
+import Modal from "../modal/Modal";
 import Image from "next/image";
 import InstagramPost from "../instagramPost/InstagramPost";
 import { instagramPath } from "../../utils/svgPath";
@@ -6,12 +7,15 @@ import womanSmall from "../../../public/images/woman-shape-small.png";
 import womanMid from "../../../public/images/woman-shape-mid.png";
 import banner from "../../../public/images/banner.png";
 import groupLogo from "../../../public/images/group-logo.png";
+import { useState } from "react";
 
 export default function Hero({
   instagramPosts,
 }: {
   instagramPosts: string[] | [];
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <section className="relative w-full shadow-sm shadow-slate-600/40 lg:shadow-none">
       <div className="absolute -z-10 h-full w-full bg-slate-50/75 lg:hidden" />
@@ -97,7 +101,7 @@ export default function Hero({
           <div className="rounded-lg lg:bg-slate-200/40 lg:p-4">
             <article className="max-w-sm rounded-tr-sm rounded-tl-[40px] rounded-br-[40px] rounded-bl-sm bg-white p-4 shadow-sm shadow-slate-600/40 lg:max-w-md lg:p-6">
               <p className="text-lg leading-snug text-slate-900">
-                Si ésta es tu
+                Si esta es tu
                 <span className="font-bold"> “primera consulta”</span> en
                 nuestra clínica te recomendamos que descargues las órdenes de
                 examen previo a tu primera visita. Si ya eres paciente en
@@ -111,7 +115,7 @@ export default function Hero({
           <div>
             <Button
               onClick={() => {
-                console.log("test");
+                setIsOpen(true);
               }}
               title="1. Ordenes De Examen"
             />
@@ -153,6 +157,7 @@ export default function Hero({
           ></path>
         </svg>
       </div>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
     </section>
   );
 }

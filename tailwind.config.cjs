@@ -29,7 +29,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
+        montserrat: ["var(--font-montserrat)", ...defaultTheme.fontFamily.sans],
       },
     },
   },

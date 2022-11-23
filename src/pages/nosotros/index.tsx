@@ -36,19 +36,19 @@ const Nosotros: NextPage = ({
           <div className="mb-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:mb-40 lg:gap-24">
             <div>
               <h3 className="mb-1 text-2xl font-bold text-teal-700">
-                ¿Quienes Somos?
+                ¿Quiénes Somos?
               </h3>
               <p className="leading-snug text-slate-900">
                 Somos un conjunto de profesionales, técnicos y administrativos
                 dedicados a dar respuesta integral a algunos de los problemas
-                emergentes mas importantes del tiempo moderno, la falta de
-                alimentación mas saludable, el incremento de obesidad, la
+                emergentes más importantes del tiempo moderno, la falta de
+                alimentación más saludable, el incremento de obesidad, la
                 perdida de la autoestima y el deporte como estilo de vida.
               </p>
             </div>
             <div>
               <h3 className="mb-1 text-2xl font-bold text-teal-700">
-                ¿Por que somos Diferentes?
+                ¿Por qué somos Diferentes?
               </h3>
               <p className="leading-snug text-slate-900">
                 En DarSpa creemos en los detalles, en cada pequeña acción, desde
@@ -56,7 +56,7 @@ const Nosotros: NextPage = ({
                 Una sonrisa amable y atención de calidad humana, no solo
                 técnica, y si se necesita la mirada de algún otro integrante ten
                 por seguro que te atenderá tan bien como el anterior. Nosotros
-                disfrutamos nuestro trabajo y nos encanta lo que hacemos. Te
+                disfrutamos nuestro trabajo y nos encanta lo que hacemos.¡Te
                 invitamos a ser parte de la experiencia DarSpa, notarás la
                 diferencia!!
               </p>

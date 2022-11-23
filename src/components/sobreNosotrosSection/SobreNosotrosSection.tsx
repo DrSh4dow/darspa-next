@@ -12,10 +12,10 @@ export default function SobreNosotrosSection() {
             </h3>
             <p className="leading-snug text-slate-900">
               Deseamos ofrecer a nuestros usuarios una experiencia de servicios
-              de alta calidad orientado a mejorar su calidad de vida, ya sea
+              de alta calidad orientada a mejorar su calidad de vida, ya sea
               normalizando su peso corporal, disminuyendo su ansiedad,
               contribuyendo en su alimentación o mejorando su entrenamiento
-              deportivo, todo lo anterior con las tecnologías mas avanzadas y
+              deportivo, todo lo anterior con las tecnologías más avanzadas y
               probadamente efectivas.
             </p>
           </div>
@@ -26,8 +26,8 @@ export default function SobreNosotrosSection() {
             <p className="leading-snug text-slate-900">
               Somos un conjunto de profesionales, técnicos y administrativos
               dedicados a dar respuesta integral a algunos de los problemas
-              emergentes mas importantes del tiempo moderno, la falta de
-              alimentación mas saludable, el incremento de obesidad, la perdida
+              emergentes más importantes del tiempo moderno, la falta de
+              alimentación más saludable, el incremento de obesidad, la perdida
               de la autoestima y el deporte como estilo de vida.
             </p>
           </div>
@@ -51,7 +51,7 @@ export default function SobreNosotrosSection() {
           Modelado Corporal
         </h4>
         <h5 className="mb-4 text-center text-xs font-bold text-slate-600 sm:text-sm md:mb-6 lg:mb-12">
-          correción localizada, cicatricez inesteticas, flacidez
+          correción localizada, cicatrices no estéticas, flacidez
         </h5>
         <div className="mx-auto mb-4 h-[2px] w-56 bg-teal-600 sm:w-80 md:mb-6 md:w-96 lg:mb-12 lg:w-[640px]" />
         <h4 className="mb-1 text-center font-montserrat text-4xl font-bold text-slate-900">

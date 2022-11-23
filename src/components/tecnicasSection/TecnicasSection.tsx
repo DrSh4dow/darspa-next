@@ -8,7 +8,11 @@ export default function TecnicasSection() {
 
   useEffect(() => {
     setServicios(
-      shuffle(servicios.filter((s) => s.tipo === "modeladoCorporal"))
+      shuffle(
+        servicios.filter(
+          (s) => s.tipo === "modeladoCorporal" || s.tipo === "tratamientoFacial"
+        )
+      )
     );
   }, []);
 

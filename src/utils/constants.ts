@@ -398,6 +398,65 @@ export const servicios: {
   },
 ];
 
+export const examenes = [
+  {
+    nombre: "ELECTROCARDIOGRAMA",
+    descripcion:
+      "Procedimiento indoloro y rápido que permite saber si el corazón está latiendo con una fuerza y un ritmo adecuados. A través de este examen también pueden detectarse y descartarse alteraciones al corazón como arritmias (latidos irregulares), insuficiencia cardiacas, daño cardiaco, infartos, entre otras. Este examen tiene una duración aproximada de 10 minutos.",
+    src: "/images/terapias/electrocardiograma.png",
+    alt: "detecte arritmias o alteraciones cardiacas",
+  },
+  {
+    nombre: "BIOIMPEDANCIOMETRÍA 8 CANALES (INBODY)",
+    descripcion:
+      "Examen de bajo costo, seguro, confiable y sumamente útil para conocer la composición corporal de una persona, es decir: su peso, masa grasa, masa muscular, agua corporal, minerales, entre otros. De esta forma podemos tener una evaluación inicial y seguimiento mucho más completos en nuestros pacientes.",
+    src: "/images/terapias/bioimpedanciometria.png",
+    alt: "conoce tu composicion corporal, masa grasa, muscular, minerales",
+  },
+  {
+    nombre: "HOLTER DE PRESIÓN ARTERIAL",
+    descripcion:
+      "Examen para medir la variabilidad de la presión arterial de una persona en un día. Se realiza en personas hipertensas o con sospecha de hipertensión. Permite tener un conocimiento preciso de sus cifras con la ayuda de un equipo portátil el cual se instala en el brazo del paciente y va tomando la presión cada 30 min aproximadamente durante un periodo de 24 hrs.",
+    src: "/images/terapias/holter-presion.png",
+    alt: "mide tu presion para controlar hipertension o hipotension",
+  },
+  {
+    nombre: "CONTROL SERIADO DE PRESIÓN",
+    descripcion:
+      "Estudio para confirmar o descartar el diagnóstico de Hipertensión Arterial. Consiste en realizar al menos tres mediciones adicionales de presión arterial, separados por al menos 30 segundos, en días distintos y en un lapso no mayor a 15 días. Se clasificará como hipertenso a personas cuyo promedio de mediciones sea mayor o igual a 135/85 mmHg.",
+    src: "/images/terapias/control-presion.png",
+    alt: "estudio para confirmar hipertension",
+  },
+  {
+    nombre: "CALORIMETRÍA INDIRECTA",
+    descripcion:
+      "Examen respiratorio rápido y preciso. Se realiza para calcular el metabolismo basal de una persona, es decir, las calorías consumidas por el cuerpo en un estado de reposo absoluto. Con esta información podemos crear una intervención individual y precisa para lograr los objetivos nutricionales en nuestros pacientes, como por ejemplo, bajar de peso. Este examen tiene una duración aproximada de 15 minutos",
+    src: "/images/terapias/calorimetria.png",
+    alt: "calcula tu metabolismo basal, y tu indice de gasto calorico en reposo",
+  },
+  {
+    nombre: "EVALUACIÓN MODELADO CORPORAL",
+    descripcion:
+      "Examen visual a cargo de nuestras asistentes de terapias, enfocado a pacientes que deseen   iniciar algún tratamiento de modelado corporal o facial, indicando la técnica más efectiva y adecuada  a sus necesidades. Esta evaluación es sin costo y tiene una duración de 15 minutos aproximadamente.",
+    src: "/images/terapias/evaluacion-modelado-corporal.png",
+    alt: "evalua el progreso del tratamiento de modelado corporal",
+  },
+  {
+    nombre: "ANÁLISIS FACIAL (FOTOMETRÍA)",
+    descripcion:
+      "El equipo analiza la piel del rostro, detectando manchas, poros, humedad, texturas, arrugas, hidratación, entre otros. En base a los resultados de la prueba, el equipo genera un diagnóstico y  recomienda los tratamientos más adecuados para mejor la calidad de la piel. Todo esto en menos de 20 segundos.  Los resultados se entregan de forma inmediata.",
+    src: "/images/terapias/analisis-facial.png",
+    alt: "detecta manchas, poros, humedad, en la piel para corregirlas",
+  },
+  {
+    nombre: "TEST CARDIOVASCULAR AL ESFUERZO",
+    descripcion:
+      "Es una batería de pruebas de trabajo físico realizado por nuestro kinesiólogo.  El objetivo es conocer y evaluar cada uno de los componentes y destrezas físicas del paciente (fuerza, resistencia, flexibilidad, balance y coordinación). Además, revela sus preferencias y objetivos personales, características importantes para poder hacer más agradable una sesión de ejercicios físicos y generar adherencia en las rutinas diarias.",
+    src: "/images/terapias/test-cardio-esfuerzo.png",
+    alt: "bateria de pruebas de trabajo fisico realizadas por kinesiologo",
+  },
+];
+
 export const months = [
   "Enero",
   "Febrero",

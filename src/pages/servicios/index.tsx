@@ -25,8 +25,9 @@ const Servicios: NextPage = () => {
             Servicios, Terapias, & Prestaciones
           </h1>
           <p className="mb-10 text-center text-sm font-bold text-slate-600 lg:mb-24">
-            Contamos con multiples servicios y terapias que te ayudaran a
-            conseguir la mejor version de ti! <br />
+            Contamos con múltiples servicios y terapias que te ayudaran a
+            conseguir la mejor versión de ti!
+            <br />
             Ven, te contamos un poco sobre ellas.
           </p>
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8">
