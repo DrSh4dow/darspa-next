@@ -28,3 +28,15 @@ export const clientSchema = z.object({
 export const clientEnv = {
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
+
+export const examenUserSchema = z.object({
+  nombreCompleto: z.string().min(1).max(80),
+  rut: z.string().min(8).max(14),
+  edad: z.string().min(1).max(3),
+  direccion: z.string().min(1).max(240),
+  correoElectronico: z.string().email(),
+  celular: z.string().min(4).max(16),
+  diabetes: z.boolean(),
+  cirugia: z.boolean(),
+  byEmail: z.boolean(),
+});

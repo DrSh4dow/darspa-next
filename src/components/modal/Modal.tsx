@@ -1,9 +1,14 @@
 import { Fragment, useRef, useState, SyntheticEvent } from "react";
+import { examenUserSchema } from "../../env/schema.mjs";
 import { useAtom } from "jotai";
 import { loadingAtom } from "../../atoms/index";
 import { Dialog, Transition } from "@headlessui/react";
 import { ListBulletIcon } from "@heroicons/react/24/outline";
-import { validate as validateRut } from "rut.js";
+import {
+  validate as validateRut,
+  clean as cleanRut,
+  format as formatRut,
+} from "rut.js";
 type ModalProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,40 +16,114 @@ type ModalProps = {
 
 export default function Modal({ isOpen, setIsOpen }: ModalProps) {
   const [nombreCompleto, setNombreCompleto] = useState("");
+  const [nombreCompletoError, setNombreCompletoError] = useState(false);
   const [rut, setRut] = useState("");
   const [rutError, setRutError] = useState(false);
   const [edad, setEdad] = useState("");
+  const [edadError, setEdadError] = useState(false);
   const [direccion, setDireccion] = useState("");
+  const [direccionError, setDireccionError] = useState(false);
   const [correoElectronico, setCorreoElectronico] = useState("");
   const [celular, setCelular] = useState("");
+  const [celularError, setCelularError] = useState(false);
   const [diabetes, setDiabetes] = useState(false);
   const [cirugia, setCirugia] = useState(false);
   const [byEmail, setByEmail] = useState(false);
   const [isLoading, setIsLoading] = useAtom(loadingAtom);
+  const [serverError, setServerError] = useState(false);
 
   const nombreRef = useRef(null);
 
   function validate() {
+    if (nombreCompleto.length > 80) {
+      setNombreCompletoError(true);
+    } else {
+      setNombreCompletoError(false);
+    }
     if (!validateRut(rut)) {
       setRutError(true);
-      return false;
+    } else {
+      setRutError(false);
+    }
+    if (edad.length > 3) {
+      setEdadError(true);
+    } else {
+      setEdadError(false);
+    }
+    if (direccion.length > 240) {
+      setDireccionError(true);
+    } else {
+      setDireccionError(false);
+    }
+    if (celular.length < 4 || celular.length > 16) {
+      setCelularError(true);
+    } else {
+      setCelularError(false);
     }
 
-    setRutError(false);
+    if (
+      nombreCompletoError ||
+      rutError ||
+      edadError ||
+      direccionError ||
+      celularError
+    )
+      return false;
+
     return true;
   }
-
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
     setIsLoading(true);
     let isAllValid = validate();
-
     if (!isAllValid) {
       setIsLoading(false);
       return;
-    } else {
+    }
+
+    console.log("iniciando impresion");
+
+    // trying to parse data
+    let parsedData;
+    try {
+      parsedData = examenUserSchema.parse({
+        nombreCompleto,
+        rut: formatRut(cleanRut(rut)),
+        edad,
+        direccion,
+        correoElectronico,
+        celular,
+        diabetes,
+        cirugia,
+        byEmail,
+      });
+    } catch (e) {
+      console.log(e);
       setIsLoading(false);
       return;
+    }
+
+    // Sending to server
+    try {
+      const res = await fetch("/api/generateExamen", {
+        method: "POST",
+        mode: "same-origin",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(parsedData),
+      });
+      if (res.ok) {
+        let data = await res.json();
+        console.log(data);
+        setIsLoading(false);
+        return;
+      }
+    } catch (e) {
+      console.log("ocurrio un error en el servidor", e);
+      setServerError(true);
     }
   }
 
@@ -125,6 +204,11 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                               ref={nombreRef}
                             />
+                            {nombreCompletoError && (
+                              <p className="text-sm font-bold text-red-600">
+                                El nombre excede el tamaño maximo
+                              </p>
+                            )}
                           </div>
 
                           <div className="col-span-6 sm:col-span-3">
@@ -168,6 +252,11 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                               autoComplete="age"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
+                            {edadError && (
+                              <p className="text-sm font-bold text-red-600">
+                                Debe ingresar una edad valida
+                              </p>
+                            )}
                           </div>
                           <div className="col-span-6 sm:col-span-3">
                             <label
@@ -186,6 +275,11 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                               autoComplete="address"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
+                            {direccionError && (
+                              <p className="text-sm font-bold text-red-600">
+                                La direccion excede el tamaño maximo
+                              </p>
+                            )}
                           </div>
                           <div className="col-span-6 sm:col-span-3">
                             <label
@@ -224,6 +318,11 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                               autoComplete="tel"
                               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
+                            {celularError && (
+                              <p className="text-sm font-bold text-red-600">
+                                debe ingresar un numero valido
+                              </p>
+                            )}
                           </div>
                         </div>
                         <fieldset>
