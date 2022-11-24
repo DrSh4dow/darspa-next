@@ -313,26 +313,28 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                               </p>
                             )}
                           </div>
-                          <div className="col-span-6 sm:col-span-3">
-                            <label
-                              htmlFor="email"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Correo electronico
-                            </label>
-                            <input
-                              type="email"
-                              name="email"
-                              required
-                              value={correoElectronico}
-                              onChange={(e) =>
-                                setCorreoElectronico(e.target.value)
-                              }
-                              id="email"
-                              autoComplete="email"
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
-                          </div>
+                          {byEmail && (
+                            <div className="col-span-6 sm:col-span-3">
+                              <label
+                                htmlFor="email"
+                                className="block text-sm font-medium text-gray-700"
+                              >
+                                Correo electronico
+                              </label>
+                              <input
+                                type="email"
+                                name="email"
+                                required
+                                value={correoElectronico}
+                                onChange={(e) =>
+                                  setCorreoElectronico(e.target.value)
+                                }
+                                id="email"
+                                autoComplete="email"
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                              />
+                            </div>
+                          )}
                           <div className="col-span-6 sm:col-span-3">
                             <label
                               htmlFor="celular"
@@ -423,7 +425,7 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                                   htmlFor="porcorreo"
                                   className="font-medium text-gray-700"
                                 >
-                                  Enviar PDF por correo electronico
+                                  Enviar una copia a mi correo electronico
                                 </label>
                               </div>
                             </div>
