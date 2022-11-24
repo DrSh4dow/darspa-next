@@ -30,7 +30,7 @@ export default function ComentariosSection() {
           Cientos de personas han conseguido cambios reales
         </p>
         <div className="relative grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3">
-          <div className="animate-marquee space-y-8 py-4">
+          <div className="animate-marquee-normal space-y-8 py-4">
             {firstCol.map(({ name, comment }) => {
               return (
                 <ComentarioCard
@@ -41,10 +41,7 @@ export default function ComentariosSection() {
               );
             })}
           </div>
-          <div
-            className="hidden space-y-8 py-4 md:block "
-            style={{ animation: "marquee 160s linear infinite" }}
-          >
+          <div className="hidden animate-marquee-slow space-y-8 py-4 md:block ">
             {secondCol.map(({ name, comment }) => {
               return (
                 <ComentarioCard
@@ -55,10 +52,7 @@ export default function ComentariosSection() {
               );
             })}
           </div>
-          <div
-            className="hidden space-y-8 py-4 lg:block"
-            style={{ animation: "marquee 100s linear infinite" }}
-          >
+          <div className="hidden animate-marquee-fast space-y-8 py-4 lg:block">
             {thirdCol.map(({ name, comment }) => {
               return (
                 <ComentarioCard

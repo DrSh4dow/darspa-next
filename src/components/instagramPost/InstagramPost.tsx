@@ -16,9 +16,9 @@ export default function InstagramPost({
     <>
       <article
         onClick={() => setIsOpen(true)}
-        className="group cursor-pointer rounded-lg bg-slate-50 p-4 shadow-md"
+        className="group cursor-pointer overflow-hidden  rounded-lg bg-slate-50 p-4 shadow-md"
       >
-        <div className="h-80 w-80 overflow-hidden lg:h-52 lg:w-52">
+        <div className="h-auto w-full overflow-hidden">
           <Image
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             width={320}

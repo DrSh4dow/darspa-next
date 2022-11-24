@@ -17,7 +17,9 @@ module.exports = {
     extend: {
       animation: {
         fade: "fade-in .5s linear forwards",
-        marquee: "marquee 132s linear infinite",
+        "marquee-normal": "marquee 132s linear infinite",
+        "marquee-slow": "marquee 160s linear infinite",
+        "marquee-fast": "marquee 100s linear infinite",
       },
       keyframes: {
         "fade-in": {

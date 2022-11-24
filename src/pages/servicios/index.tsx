@@ -31,7 +31,7 @@ const Servicios: NextPage = () => {
             Ven, te contamos un poco sobre ellas.
           </p>
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8">
-            <h2 className="mb-2 text-left text-2xl font-black text-teal-900 lg:text-4xl">
+            <h2 className="mb-2 text-left text-2xl font-black text-teal-700 lg:text-4xl">
               Modelado Corporal
             </h2>
             {servicios
@@ -46,7 +46,7 @@ const Servicios: NextPage = () => {
                   reverse={idx % 2 === 0}
                 />
               ))}
-            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-900 lg:mt-20 lg:text-4xl">
+            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-700 lg:mt-20 lg:text-4xl">
               Tratamientos Faciales
             </h2>
             {servicios
@@ -61,7 +61,22 @@ const Servicios: NextPage = () => {
                   reverse={idx % 2 === 0}
                 />
               ))}
-            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-900 lg:mt-20 lg:text-4xl">
+            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-700 lg:mt-20 lg:text-4xl">
+              Tratamientos Faciales Avanzados
+            </h2>
+            {servicios
+              .filter((s) => s.tipo === "facialAvanzado")
+              .map((s, idx) => (
+                <ServiciosCard
+                  src={s.src}
+                  nombre={s.nombre}
+                  descripcion={s.descripcion}
+                  alt={s.alt}
+                  key={s.nombre}
+                  reverse={idx % 2 === 0}
+                />
+              ))}
+            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-700 lg:mt-20 lg:text-4xl">
               Masajes
             </h2>
             {servicios
@@ -76,7 +91,7 @@ const Servicios: NextPage = () => {
                   reverse={idx % 2 === 0}
                 />
               ))}
-            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-900 lg:mt-20 lg:text-4xl">
+            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-700 lg:mt-20 lg:text-4xl">
               Uñas, Pestañas & Cejas
             </h2>
             {servicios
@@ -91,7 +106,7 @@ const Servicios: NextPage = () => {
                   reverse={idx % 2 === 0}
                 />
               ))}
-            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-900 lg:mt-20 lg:text-4xl">
+            <h2 className="mb-2 mt-10 text-left text-2xl font-black text-teal-700 lg:mt-20 lg:text-4xl">
               Otros Servicios
             </h2>
             {servicios

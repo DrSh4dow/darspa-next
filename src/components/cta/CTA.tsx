@@ -1,15 +1,20 @@
+import { useState } from "react";
 import Button from "../button/Button";
+import Modal from "../modal/Modal";
 export default function CTA() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="bg-slate-100">
       <div className="mx-auto max-w-screen-2xl py-12 px-4 sm:px-6 lg:flex lg:items-center lg:justify-between lg:py-16 lg:px-8">
         <h2 className="font-montserrat text-3xl font-bold tracking-tight text-teal-900 sm:text-4xl">
           <span className="block">Listo para iniciar tu cambio?</span>
-          <span className="block text-2xl text-teal-500 sm:text-3xl">
+          <span className="block text-2xl text-teal-600 sm:text-3xl">
             Agenda tu hora.
           </span>
         </h2>
         <div className="mt-8 flex flex-wrap gap-4 lg:mt-0 lg:flex-shrink-0">
+          <Button onClick={() => setIsOpen(true)} title="Ordenes De Examen" />
           <a
             href="https://www.doctoralia.cl/daniel-moretti-castillo/medico-general/castro?utm_source=widget-null&utm_medium=link"
             rel="nofollow"
@@ -31,6 +36,7 @@ export default function CTA() {
           </a>
         </div>
       </div>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 }

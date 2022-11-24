@@ -18,9 +18,13 @@
     "@trpc/next": "10.0.0-rc.4",
     "@trpc/react-query": "10.0.0-rc.4",
     "@trpc/server": "10.0.0-rc.4",
+    "jotai": "^1.10.0",
     "next": "13.0.2",
+    "nodemailer": "^6.8.0",
+    "pdfkit": "^0.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rut.js": "^2.1.0",
     "superjson": "1.9.1",
     "zod": "^3.18.0"
   },

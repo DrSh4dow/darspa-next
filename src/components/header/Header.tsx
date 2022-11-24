@@ -83,7 +83,12 @@ export default function Header() {
           </Link>
         </nav>
         <div>
-          <Image src={logoHeader} alt="dar spa, centro nutricional avanzado" />
+          <Link href="/">
+            <Image
+              src={logoHeader}
+              alt="dar spa, centro nutricional avanzado"
+            />
+          </Link>
         </div>
       </div>
       <Drawer isOpen={isOpen} setIsOpen={setIsOpen} title="Menu">

@@ -54,11 +54,11 @@ export default function Hero({
             No Invasivo
           </h2>
         </div>
-        <div className="col-start-2 row-span-3 hidden items-start justify-end lg:flex">
-          <div className="grid grid-cols-2 gap-6 rounded-lg bg-white/80 p-8">
-            <h2 className="col-span-2 text-2xl font-black text-teal-700">
-              Novedades Instagram
-            </h2>
+        <div className="col-start-2 row-span-3 hidden items-center justify-center rounded-lg bg-white/80 py-8 px-16 lg:flex lg:flex-wrap">
+          <h2 className="mb-8 text-2xl font-black text-teal-700">
+            Novedades Instagram
+          </h2>
+          <div className="mb-8 grid grid-cols-2 grid-rows-2 gap-6">
             {instagramPosts.length > 1 ? (
               instagramPosts.map((url) => <InstagramPost key={url} src={url} />)
             ) : (
@@ -69,37 +69,37 @@ export default function Hero({
                 <InstagramPost />
               </>
             )}
-            <div className="col-span-2 flex justify-end">
-              <a
-                className="flex items-center justify-end gap-1"
-                href="https://www.instagram.com/darspa.cl/"
-                target="_blank"
+          </div>
+          <div className="flex w-full justify-end">
+            <a
+              className="flex items-center justify-end gap-1"
+              href="https://www.instagram.com/darspa.cl/"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="h-8 w-8 stroke-teal-600"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-8 w-8 stroke-teal-600"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                  />
-                </svg>
-                <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
-                  <path d={instagramPath} />
-                </svg>
-                <h3 className="text-lg font-black text-teal-600">darspa.cl</h3>
-              </a>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                />
+              </svg>
+              <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
+                <path d={instagramPath} />
+              </svg>
+              <h3 className="text-lg font-black text-teal-600">darspa.cl</h3>
+            </a>
           </div>
         </div>
         <div className="col-start-1 flex items-center justify-start">
           <div className="rounded-lg lg:bg-slate-200/40 lg:p-4">
-            <article className="max-w-sm rounded-tr-sm rounded-tl-[40px] rounded-br-[40px] rounded-bl-sm bg-white p-4 shadow-sm shadow-slate-600/40 lg:max-w-md lg:p-6">
+            <article className="max-w-sm rounded-tr-sm rounded-tl-[40px] rounded-br-[40px] rounded-bl-sm bg-white p-4 shadow-sm shadow-slate-600/40 lg:max-w-sm lg:p-6">
               <p className="text-lg leading-snug text-slate-900">
                 Si esta es tu
                 <span className="font-bold"> “primera consulta”</span> en
@@ -117,7 +117,7 @@ export default function Hero({
               onClick={() => {
                 setIsOpen(true);
               }}
-              title="1. Ordenes De Examen"
+              title="Ordenes De Examen"
             />
           </div>
           <div>
@@ -127,7 +127,7 @@ export default function Hero({
               target="_blank"
             >
               <Button
-                title="2. Agendar Hora"
+                title="Agendar Hora"
                 icon={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

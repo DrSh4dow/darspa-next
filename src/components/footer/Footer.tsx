@@ -49,16 +49,13 @@ export default function Footer() {
                   <path d={instagramPath} />
                 </svg>
               </a>
-              <a
-                href="https://www.facebook.com/consultadanielmoretti"
-                target="_blank"
-              >
+              <a href="https://www.facebook.com/darspa.cl" target="_blank">
                 <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
                   <path d={facebookPath} />
                 </svg>
               </a>
               <a
-                href="https://api.whatsapp.com/send?phone=56972275490&text=Hola!%20vengo%20desde%20darspa.cl%0Ame%20gustaria%20consultar%20sobre..."
+                href="https://api.whatsapp.com/send?phone=56972275330&text=Hola!%20vengo%20desde%20darspa.cl%0Ame%20gustaria%20consultar%20sobre..."
                 target="_blank"
               >
                 <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
