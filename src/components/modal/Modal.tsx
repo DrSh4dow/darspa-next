@@ -30,48 +30,54 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
   const [cirugia, setCirugia] = useState(false);
   const [byEmail, setByEmail] = useState(false);
   const [isLoading, setIsLoading] = useAtom(loadingAtom);
+  const [isReady, setIsReady] = useState(false);
   const [serverError, setServerError] = useState(false);
 
   const nombreRef = useRef(null);
 
   function validate() {
+    let errOne = false;
+    let errTwo = false;
+    let errThree = false;
+    let errFour = false;
+    let errFive = false;
+
     if (nombreCompleto.length > 80) {
       setNombreCompletoError(true);
+      errOne = true;
     } else {
       setNombreCompletoError(false);
     }
     if (!validateRut(rut)) {
       setRutError(true);
+      errTwo = true;
     } else {
       setRutError(false);
     }
-    if (edad.length > 3) {
+    if (Number(edad) < 0 || Number(edad) > 130) {
       setEdadError(true);
+      errThree = true;
     } else {
       setEdadError(false);
     }
     if (direccion.length > 240) {
       setDireccionError(true);
+      errFour = true;
     } else {
       setDireccionError(false);
     }
     if (celular.length < 4 || celular.length > 16) {
       setCelularError(true);
+      errFive = true;
     } else {
       setCelularError(false);
     }
 
-    if (
-      nombreCompletoError ||
-      rutError ||
-      edadError ||
-      direccionError ||
-      celularError
-    )
-      return false;
+    if (errOne || errTwo || errThree || errFour || errFive) return false;
 
     return true;
   }
+
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
     setIsLoading(true);
@@ -80,8 +86,6 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
       setIsLoading(false);
       return;
     }
-
-    console.log("iniciando impresion");
 
     // trying to parse data
     let parsedData;
@@ -115,15 +119,43 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
         },
         body: JSON.stringify(parsedData),
       });
+
       if (res.ok) {
-        let data = await res.json();
-        console.log(data);
+        let data = await res.blob();
         setIsLoading(false);
+        setIsReady(true);
+
+        const blobUrl = URL.createObjectURL(data);
+        // Create a link element
+        const link = document.createElement("a");
+
+        // Set link's href to point to the Blob URL
+        link.href = blobUrl;
+        link.download = "orden-examen.pdf";
+
+        // Append link to the body
+        document.body.appendChild(link);
+
+        // Dispatch click event on the link
+        // This is necessary as link.click() does not work on the latest firefox
+        link.dispatchEvent(
+          new MouseEvent("click", {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+          })
+        );
+
+        // Remove link from body
+        document.body.removeChild(link);
+
         return;
       }
     } catch (e) {
       console.log("ocurrio un error en el servidor", e);
+      setIsLoading(false);
       setServerError(true);
+      return;
     }
   }
 
@@ -400,6 +432,21 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                       </div>
                     </div>
                   </div>
+                  {serverError && (
+                    <p className="text-center text-sm font-bold text-red-600">
+                      Ocurrio un error procesando su solicitud
+                      <br />
+                      Intentelo de nuevo mas tarde
+                    </p>
+                  )}
+                  {isReady && (
+                    <p className="text-center text-sm font-bold text-teal-600">
+                      Su solicitud fue enviada con exito!
+                      <br />
+                      {byEmail &&
+                        "No olvide revisar su carpeta de spam en el correo"}
+                    </p>
+                  )}
                   <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                     <button
                       type="submit"

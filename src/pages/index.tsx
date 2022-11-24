@@ -5,7 +5,6 @@ import NovedadesSection from "../components/novedadesSection/NovedadesSection";
 import SobreNosotrosSection from "../components/sobreNosotrosSection/SobreNosotrosSection";
 import ComentariosSection from "../components/comentariosSection/ComentariosSection";
 import TecnicasSection from "../components/tecnicasSection/TecnicasSection";
-import CTA from "../components/cta/CTA";
 import FAQ from "../components/faq/FAQ";
 import { env } from "../env/server.mjs";
 
