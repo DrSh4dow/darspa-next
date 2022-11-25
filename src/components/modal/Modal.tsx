@@ -24,8 +24,6 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
   const [direccion, setDireccion] = useState("");
   const [direccionError, setDireccionError] = useState(false);
   const [correoElectronico, setCorreoElectronico] = useState("");
-  const [celular, setCelular] = useState("");
-  const [celularError, setCelularError] = useState(false);
   const [diabetes, setDiabetes] = useState(false);
   const [cirugia, setCirugia] = useState(false);
   const [byEmail, setByEmail] = useState(false);
@@ -40,7 +38,6 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
     let errTwo = false;
     let errThree = false;
     let errFour = false;
-    let errFive = false;
 
     if (nombreCompleto.length > 80) {
       setNombreCompletoError(true);
@@ -66,14 +63,8 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
     } else {
       setDireccionError(false);
     }
-    if (celular.length < 4 || celular.length > 16) {
-      setCelularError(true);
-      errFive = true;
-    } else {
-      setCelularError(false);
-    }
 
-    if (errOne || errTwo || errThree || errFour || errFive) return false;
+    if (errOne || errTwo || errThree || errFour) return false;
 
     return true;
   }
@@ -96,7 +87,6 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
         edad,
         direccion,
         correoElectronico,
-        celular,
         diabetes,
         cirugia,
         byEmail,
@@ -335,29 +325,6 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
                               />
                             </div>
                           )}
-                          <div className="col-span-6 sm:col-span-3">
-                            <label
-                              htmlFor="celular"
-                              className="block text-sm font-medium text-gray-700"
-                            >
-                              Celular
-                            </label>
-                            <input
-                              type="tel"
-                              name="celular"
-                              id="celular"
-                              required
-                              value={celular}
-                              onChange={(e) => setCelular(e.target.value)}
-                              autoComplete="tel"
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
-                            {celularError && (
-                              <p className="text-sm font-bold text-red-600">
-                                debe ingresar un numero valido
-                              </p>
-                            )}
-                          </div>
                         </div>
                         <fieldset>
                           <legend className="sr-only">Opciones</legend>

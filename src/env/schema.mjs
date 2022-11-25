@@ -37,7 +37,6 @@ export const examenUserSchema = z.object({
   edad: z.string().min(1).max(3),
   direccion: z.string().min(1).max(240),
   correoElectronico: z.string(),
-  celular: z.string(),
   diabetes: z.boolean(),
   cirugia: z.boolean(),
   byEmail: z.boolean(),
