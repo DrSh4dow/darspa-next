@@ -74,6 +74,10 @@ export default function ComentariosSection() {
           transformation: translateZ(0);
           will-change: transform;
         }
+
+        .animation-delay-safari {
+          animation-delay: 500ms;
+        }
       `}</style>
     </section>
   );
