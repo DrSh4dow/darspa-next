@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { Montserrat, Nunito } from "@next/font/google";
 import { type AppType } from "next/app";
 import { trpc } from "../utils/trpc";
@@ -33,6 +34,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           }
         `}</style>
       </main>
+      <Analytics />
     </>
   );
 };
