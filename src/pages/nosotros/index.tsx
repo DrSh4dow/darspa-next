@@ -16,12 +16,7 @@ const Nosotros: NextPage<{
         <title>Dar Spa | Nuestro Equipo</title>
         <meta
           name="description"
-          content="Somos un conjunto de profesionales, técnicos y 
-                   administrativos dedicados a dar respuesta integral a 
-                   algunos de los problemas emergentes mas importantes del 
-                   tiempo moderno, la falta de alimentación mas saludable, el
-                   incremento de obesidad, la perdida de la autoestima y 
-                   el deporte como estilo de vida."
+          content="En DarSpa creemos en los detalles, en cada pequeña acción, desde el aroma que sientes al entrar hasta el calor de la chimenea. Una sonrisa amable y atención de calidad humana, no solo técnica, y si se necesita la mirada de algún otro integrante ten por seguro que te atenderá tan bien como el anterior."
         />
         <link rel="icon" href="/favicon.png" />
       </Head>

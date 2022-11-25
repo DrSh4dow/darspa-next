@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 export default function ComentariosSection() {
   const [firstCol, setFirstCol] = useState<
     { name: string; comment: string }[] | []
-  >([]);
+  >(comentarios);
   const [secondCol, setSecondCol] = useState<
     { name: string; comment: string }[] | []
-  >([]);
+  >(comentarios);
   const [thirdCol, setThirdCol] = useState<
     { name: string; comment: string }[] | []
-  >([]);
+  >(comentarios);
 
   useEffect(() => {
     setFirstCol(shuffle(comentarios));

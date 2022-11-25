@@ -96,7 +96,7 @@ export default function Header() {
           href="/"
           onClick={() => setIsOpen(false)}
           className={
-            router.pathname === "/" ? "text-blue-700" : "hover:text-teal-700"
+            router.pathname === "/" ? "text-blue-700 " : "hover:text-teal-700"
           }
         >
           Inicio

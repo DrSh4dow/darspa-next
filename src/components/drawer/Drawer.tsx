@@ -1,6 +1,5 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import Button from "../button/Button";
 
 type DrawerProps = {
   title?: string;
@@ -15,11 +14,13 @@ export default function Drawer({
   isOpen,
   setIsOpen,
 }: DrawerProps) {
+  const cancelRef = useRef(null);
   return (
     <Transition show={isOpen} as={Fragment}>
       <Dialog
         unmount={false}
         open={isOpen}
+        initialFocus={cancelRef}
         onClose={() => setIsOpen(false)}
         className="fixed inset-0 z-50 overflow-y-auto sm:hidden"
       >
@@ -60,7 +61,13 @@ export default function Drawer({
               </div>
 
               <div className="mt-10 self-center">
-                <Button title="Cerrar" onClick={() => setIsOpen(!isOpen)} />
+                <button
+                  className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 p-4 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 lg:text-lg"
+                  onClick={() => setIsOpen(!isOpen)}
+                  ref={cancelRef}
+                >
+                  Cerrar
+                </button>
               </div>
             </div>
           </Transition.Child>
