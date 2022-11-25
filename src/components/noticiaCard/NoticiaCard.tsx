@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 export default function NoticiaCard({
   tituloNoticia = "Titulo de Noticia",
   cuerpo = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fermentum integer dignissim euismod adipiscing dignissim sit...",

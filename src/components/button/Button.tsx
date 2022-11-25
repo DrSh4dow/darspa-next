@@ -2,6 +2,7 @@ export default function Button({
   title,
   small = false,
   icon = null,
+  // @ts-ignore
   onClick = () => {},
 }: {
   title: string;

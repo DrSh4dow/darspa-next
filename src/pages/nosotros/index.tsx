@@ -3,16 +3,13 @@ import Head from "next/head";
 import TeamCard from "../../components/teamCard/TeamCard";
 import * as prismic from "@prismicio/client";
 
-// @ts-ignore
-const Nosotros: NextPage = ({
-  filteredProfesionales,
-}: {
+const Nosotros: NextPage<{
   filteredProfesionales: {
     nombre: string;
     titulo: string;
     imagenSrc: string;
   }[];
-}) => {
+}> = ({ filteredProfesionales }) => {
   return (
     <>
       <Head>

@@ -72,7 +72,7 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
   async function handleSubmit(e: SyntheticEvent) {
     e.preventDefault();
     setIsLoading(true);
-    let isAllValid = validate();
+    const isAllValid = validate();
     if (!isAllValid) {
       setIsLoading(false);
       return;
@@ -111,7 +111,7 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
       });
 
       if (res.ok) {
-        let data = await res.blob();
+        const data = await res.blob();
         setIsLoading(false);
         setIsReady(true);
 

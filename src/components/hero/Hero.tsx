@@ -75,6 +75,7 @@ export default function Hero({
               className="flex items-center justify-end gap-1"
               href="https://www.instagram.com/darspa.cl/"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -123,8 +124,8 @@ export default function Hero({
           <div>
             <a
               href="https://www.doctoralia.cl/daniel-moretti-castillo/medico-general/castro?utm_source=widget-null&utm_medium=link"
-              rel="nofollow"
               target="_blank"
+              rel="noreferrer"
             >
               <Button
                 title="Agendar Hora"

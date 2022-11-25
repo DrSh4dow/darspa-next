@@ -44,17 +44,26 @@ export default function Footer() {
               </div>
             </div>
             <div className="col-start-2 row-start-3 flex items-center justify-start gap-2 sm:col-start-3 sm:row-start-1 sm:justify-end">
-              <a href="https://www.instagram.com/darspa.cl/" target="_blank">
+              <a
+                rel="noreferrer"
+                href="https://www.instagram.com/darspa.cl/"
+                target="_blank"
+              >
                 <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
                   <path d={instagramPath} />
                 </svg>
               </a>
-              <a href="https://www.facebook.com/darspa.cl" target="_blank">
+              <a
+                rel="noreferrer"
+                href="https://www.facebook.com/darspa.cl"
+                target="_blank"
+              >
                 <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
                   <path d={facebookPath} />
                 </svg>
               </a>
               <a
+                rel="noreferrer"
                 href="https://api.whatsapp.com/send?phone=56972275330&text=Hola!%20vengo%20desde%20darspa.cl%0Ame%20gustaria%20consultar%20sobre..."
                 target="_blank"
               >
@@ -70,6 +79,7 @@ export default function Footer() {
               <span className="text-red-600">&#10084; </span>by{" "}
               <a
                 className="underline"
+                rel="noreferrer"
                 href="https://danielmoretti.com"
                 target="_blank"
               >

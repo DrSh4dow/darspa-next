@@ -10,7 +10,7 @@ export default function InstagramPost({
   src?: string;
   alt?: string;
 }) {
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>

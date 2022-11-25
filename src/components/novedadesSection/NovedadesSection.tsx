@@ -27,6 +27,7 @@ export default function NovedadesSection({
           className="flex items-center justify-start gap-1"
           href="https://www.instagram.com/darspa.cl/"
           target="_blank"
+          rel="noreferrer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

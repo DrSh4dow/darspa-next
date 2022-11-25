@@ -106,8 +106,9 @@ export default function FAQ() {
                   otras de las prestaciones como la consulta médica son
                   solamente particular, bonos de isapre colmena, o reembolso
                   para otras isapres. Las terapias de modelado corporal y otras
-                  por considerarse "cosméticas" solo se pueden cancelar de forma
-                  particular por los medios de pago descritos anteriormente.
+                  por considerarse &quot;cosméticas&quot; solo se pueden
+                  cancelar de forma particular por los medios de pago descritos
+                  anteriormente.
                 </p>
               </li>
               <li>

@@ -17,7 +17,7 @@ export default function CTA() {
           <Button onClick={() => setIsOpen(true)} title="Ordenes De Examen" />
           <a
             href="https://www.doctoralia.cl/daniel-moretti-castillo/medico-general/castro?utm_source=widget-null&utm_medium=link"
-            rel="nofollow"
+            rel="noreferrer"
             target="_blank"
           >
             <Button

@@ -5,16 +5,14 @@ import * as prismic from "@prismicio/client";
 import { months } from "../../utils/constants";
 
 // @ts-ignore
-const Noticias: NextPage = ({
-  filteredNoticias,
-}: {
+const Noticias: NextPage<{
   filteredNoticias: {
     titulo: string;
     cuerpo: string;
     imagenSrc: string;
     date: string;
   }[];
-}) => {
+}> = ({ filteredNoticias }) => {
   return (
     <>
       <Head>
@@ -73,15 +71,15 @@ export async function getStaticProps() {
   });
 
   const filteredNoticias = noticias.map(({ data, first_publication_date }) => {
-    let [year, month, day] = first_publication_date
+    const [year, month, day] = first_publication_date
       .split("T")[0]
       ?.split("-") ?? ["", "", ""];
-    month = months[Number(month) - 1];
+    const formatedMonth = months[Number(month) - 1];
 
     return {
       titulo: data.titulo[0].text ?? "Titulo",
       cuerpo: data.cuerpo[0].text ?? "",
-      date: `${day} de ${month}, ${year}`,
+      date: `${day} de ${formatedMonth}, ${year}`,
     };
   });
 

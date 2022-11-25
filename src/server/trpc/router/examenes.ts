@@ -2,7 +2,7 @@ import { router, publicProcedure } from "../trpc";
 
 export const examenesRouter = router({
   getExamen: publicProcedure.query(async () => {
-    let res = "World";
+    const res = "World";
 
     return res;
   }),

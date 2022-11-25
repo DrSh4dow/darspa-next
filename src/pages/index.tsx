@@ -1,4 +1,4 @@
-import { type NextPage } from "next";
+import { type NextPage, type GetStaticProps } from "next";
 import Head from "next/head";
 import Hero from "../components/hero/Hero";
 import NovedadesSection from "../components/novedadesSection/NovedadesSection";
@@ -8,8 +8,7 @@ import TecnicasSection from "../components/tecnicasSection/TecnicasSection";
 import FAQ from "../components/faq/FAQ";
 import { env } from "../env/server.mjs";
 
-// @ts-ignore
-const Home: NextPage = ({ instagramPosts }) => {
+const Home: NextPage<{ instagramPosts: string[] }> = ({ instagramPosts }) => {
   return (
     <>
       <Head>
@@ -35,8 +34,10 @@ const Home: NextPage = ({ instagramPosts }) => {
   );
 };
 
-export async function getStaticProps() {
-  let urls: string[] = [];
+export const getStaticProps: GetStaticProps<{
+  instagramPosts: string[];
+}> = async () => {
+  const urls: string[] = [];
   const instagramToken = env.INSTAGRAM_TOKEN;
 
   try {
@@ -67,6 +68,6 @@ export async function getStaticProps() {
     },
     revalidate: 86400,
   };
-}
+};
 
 export default Home;

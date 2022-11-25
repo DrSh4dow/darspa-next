@@ -35,17 +35,17 @@ const months = [
 ];
 
 async function genPdf(rawUser: any, res: NextApiResponse) {
-  let paciente = examenUserSchema.parse(rawUser);
+  const paciente = examenUserSchema.parse(rawUser);
 
-  let now = new Date();
-  let currentIsoDate = now.toISOString();
-  let formatedFecha = `${currentIsoDate.split("T")[0]?.split("-")[2] ?? ""}-${
+  const now = new Date();
+  const currentIsoDate = now.toISOString();
+  const formatedFecha = `${currentIsoDate.split("T")[0]?.split("-")[2] ?? ""}-${
     months[Number(currentIsoDate.split("T")[0]?.split("-")[1]) - 1]
   }-${currentIsoDate.split("T")[0]?.split("-")[0]}`;
 
   console.log(formatedFecha);
 
-  let laborat =
+  const laborat =
     paciente.cirugia || paciente.diabetes
       ? imagenLaboratorioTwo
       : imagenLaboratorioOne;
@@ -56,10 +56,10 @@ async function genPdf(rawUser: any, res: NextApiResponse) {
   });
 
   // pipe the document to a blob
-  let buffers: any = [];
+  const buffers: any = [];
   doc.on("data", buffers.push.bind(buffers));
   doc.on("end", () => {
-    let pdfData = Buffer.concat(buffers);
+    const pdfData = Buffer.concat(buffers);
     if (paciente.byEmail) {
       sendEmail(paciente, pdfData);
     }
@@ -98,8 +98,8 @@ async function genPdf(rawUser: any, res: NextApiResponse) {
 }
 
 async function sendEmail(user: any, pdfBlob: Buffer) {
-  let parsedUser = examenUserSchema.parse(user);
-  let message = {
+  const parsedUser = examenUserSchema.parse(user);
+  const message = {
     from: "noreply@darspa.cl",
     to: parsedUser.correoElectronico,
     subject: `Orden de Examen - ${parsedUser.nombreCompleto}`,
