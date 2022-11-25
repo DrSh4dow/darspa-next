@@ -58,10 +58,10 @@ async function genPdf(rawUser: any, res: NextApiResponse) {
   // pipe the document to a blob
   const buffers: any = [];
   doc.on("data", buffers.push.bind(buffers));
-  doc.on("end", () => {
+  doc.on("end", async () => {
     const pdfData = Buffer.concat(buffers);
     if (paciente.byEmail) {
-      sendEmail(paciente, pdfData);
+      await sendEmail(paciente, pdfData);
     }
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
@@ -251,20 +251,16 @@ padding:10px 20px 10px 20px!important;
     ],
   };
 
-  let res;
   try {
     console.log("SENDING MAIL");
-    res = await transporter.sendMail(message);
+    await transporter.sendMail(message);
   } catch (e) {
     console.log(e);
     return false;
   }
 
-  if (res.accepted.length > 0) {
-    return true;
-  } else {
-    return false;
-  }
+  console.log("MAIL SENT");
+  return true;
 }
 
 const generateExamenOrden = async (
