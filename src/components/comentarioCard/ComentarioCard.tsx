@@ -8,7 +8,7 @@ export default function ComentarioCard({
   return (
     <figure
       aria-hidden="false"
-      className="opacity-1 animation-delay animate-fade rounded-3xl bg-white p-6 shadow-md shadow-gray-900/5"
+      className="opacity-1 rounded-3xl bg-white p-6 shadow-md shadow-gray-900/5"
     >
       <blockquote className="text-slate-900">
         <div className="flex">
@@ -53,11 +53,6 @@ export default function ComentarioCard({
       <figcaption className="mt-3 text-sm text-slate-600 before:content-['–_']">
         {name}
       </figcaption>
-      <style jsx>{`
-        .animation-delay {
-          animation-delay: 0.5s;
-        }
-      `}</style>
     </figure>
   );
 }

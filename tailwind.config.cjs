@@ -27,6 +27,7 @@ module.exports = {
           "100%": { opacity: 1 },
         },
         marquee: {
+          "0%": { transform: "translateY(0)" },
           "100%": { transform: "translateY(-50%)" },
         },
       },
@@ -35,5 +36,9 @@ module.exports = {
       },
     },
   },
-  plugins: [rotateY, require("@tailwindcss/forms")],
+  plugins: [
+    rotateY,
+    require("@tailwindcss/forms"),
+    require("autoprefixer"),
+  ],
 };
