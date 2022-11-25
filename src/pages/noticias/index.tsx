@@ -4,7 +4,6 @@ import NoticiaCard from "../../components/noticiaCard/NoticiaCard";
 import * as prismic from "@prismicio/client";
 import { months } from "../../utils/constants";
 
-// @ts-ignore
 const Noticias: NextPage<{
   filteredNoticias: {
     titulo: string;
