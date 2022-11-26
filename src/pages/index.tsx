@@ -23,6 +23,7 @@ const Home: NextPage<{ instagramPosts: string[] }> = ({ instagramPosts }) => {
                    el deporte como estilo de vida."
         />
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href="https://darspa.cl" />
       </Head>
       <Hero instagramPosts={instagramPosts} />
       <NovedadesSection instagramPosts={instagramPosts} />

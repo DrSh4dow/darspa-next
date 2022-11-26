@@ -19,6 +19,7 @@ const Nosotros: NextPage<{
           content="En DarSpa creemos en los detalles, en cada pequeña acción, desde el aroma que sientes al entrar hasta el calor de la chimenea. Una sonrisa amable y atención de calidad humana, no solo técnica, y si se necesita la mirada de algún otro integrante ten por seguro que te atenderá tan bien como el anterior."
         />
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href="https://darspa.cl/nosotros" />
       </Head>
       <section>
         <div className="mx-auto max-w-screen-2xl py-20 px-2 sm:px-4">

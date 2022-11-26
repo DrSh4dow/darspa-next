@@ -10,14 +10,10 @@ const Nosotros: NextPage = () => {
         <title>Dar Spa | Examenes & Procedimientos</title>
         <meta
           name="description"
-          content="Somos un conjunto de profesionales, técnicos y 
-                   administrativos dedicados a dar respuesta integral a 
-                   algunos de los problemas emergentes mas importantes del 
-                   tiempo moderno, la falta de alimentación mas saludable, el
-                   incremento de obesidad, la perdida de la autoestima y 
-                   el deporte como estilo de vida."
+          content="En DarSpa realizamos multiples examenes para monitorear su progreso hacia la mejor version de usted mismo"
         />
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href="https://darspa.cl/examenes" />
       </Head>
       <section>
         <div className="mx-auto max-w-screen-2xl py-20 px-2 sm:px-4">

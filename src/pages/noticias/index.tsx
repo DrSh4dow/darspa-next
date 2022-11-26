@@ -18,6 +18,7 @@ const Noticias: NextPage<{
         <title>Dar Spa | Noticias & Novedades</title>
         <meta name="description" content="Feed de noticias de Dar Spa" />
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href="https://darspa.cl/noticias" />
       </Head>
       <section>
         <div className="mx-auto max-w-screen-2xl py-20 px-2 sm:px-4">
