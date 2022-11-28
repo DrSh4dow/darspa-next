@@ -10,6 +10,14 @@ const rotateY = plugin(function ({ addUtilities }) {
   });
 });
 
+const webkitFullScreen = plugin(function ({ addUtilities }) {
+  addUtilities({
+    ".webkit-fill-available": {
+      height: "-webkit-fill-available",
+    },
+  });
+});
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -17,9 +25,9 @@ module.exports = {
     extend: {
       animation: {
         fade: "fade-in .5s linear forwards",
-        "marquee-normal": "marquee 132s linear infinite",
-        "marquee-slow": "marquee 160s linear infinite",
-        "marquee-fast": "marquee 100s linear infinite",
+        "marquee-normal": "marquee 60s linear infinite",
+        "marquee-slow": "marquee 60s linear infinite",
+        "marquee-fast": "marquee 50s linear infinite",
       },
       keyframes: {
         "fade-in": {
@@ -36,9 +44,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    rotateY,
-    require("@tailwindcss/forms"),
-    require("autoprefixer"),
-  ],
+  plugins: [rotateY, webkitFullScreen, require("@tailwindcss/forms")],
 };

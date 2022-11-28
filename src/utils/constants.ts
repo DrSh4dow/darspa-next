@@ -1,4 +1,9 @@
-export const comentarios: { name: string; comment: string }[] = [
+type Comentario = {
+  name: string;
+  comment: string;
+};
+
+export const smallComentarios: Comentario[] = [
   {
     name: "Maribel",
     comment:
@@ -69,6 +74,9 @@ export const comentarios: { name: string; comment: string }[] = [
     comment:
       "Muy buena la atención del doctor te explica detalladamente a cerca del tratamiento a seguir y lo mejor que trabaja con todos los especialistas, ahora a empezar y seguir todo lo indicado para poder lograr mi objetivo .",
   },
+];
+
+export const midComments: Comentario[] = [
   {
     name: "Humberto Andres Ojeda",
     comment:
@@ -129,6 +137,9 @@ export const comentarios: { name: string; comment: string }[] = [
     comment:
       "Agradezco todo el cariño y la dedicacion a mi persona, todo eso hace que mi tratamiento sea mucho mas eficaz",
   },
+];
+
+export const bigCommentarios: Comentario[] = [
   {
     name: "R.G.M",
     comment:
