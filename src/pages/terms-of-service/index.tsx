@@ -25,9 +25,9 @@ export default function TermsOfService() {
 
         <p>
           Permission is granted to temporarily download one copy of the
-          materials on DarSpa's Website for personal, non-commercial transitory
-          viewing only. This is the grant of a license, not a transfer of title,
-          and under this license you may not:
+          materials on DarSpa&apos;s Website for personal, non-commercial
+          transitory viewing only. This is the grant of a license, not a
+          transfer of title, and under this license you may not:
         </p>
 
         <ul>
@@ -37,7 +37,7 @@ export default function TermsOfService() {
             display;
           </li>
           <li>
-            attempt to reverse engineer any software contained on DarSpa's
+            attempt to reverse engineer any software contained on DarSpa&apos;s
             Website;
           </li>
           <li>
@@ -45,8 +45,8 @@ export default function TermsOfService() {
             materials; or
           </li>
           <li>
-            transferring the materials to another person or "mirror" the
-            materials on any other server.
+            transferring the materials to another person or &quot;mirror&quot;
+            the materials on any other server.
           </li>
         </ul>
 
@@ -65,9 +65,9 @@ export default function TermsOfService() {
         <h2>3. Disclaimer</h2>
 
         <p>
-          All the materials on DarSpa’s Website are provided "as is". DarSpa
-          makes no warranties, may it be expressed or implied, therefore negates
-          all other warranties. Furthermore, DarSpa does not make any
+          All the materials on DarSpa’s Website are provided &quot;as is&quot;.
+          DarSpa makes no warranties, may it be expressed or implied, therefore
+          negates all other warranties. Furthermore, DarSpa does not make any
           representations concerning the accuracy or reliability of the use of
           the materials on its Website or otherwise relating to such materials
           or any sites linked to this Website.
@@ -120,8 +120,8 @@ export default function TermsOfService() {
         <h2>9. Governing Law</h2>
 
         <p>
-          Any claim related to DarSpa's Website shall be governed by the laws of
-          cl without regards to its conflict of law provisions.
+          Any claim related to DarSpa&apos;s Website shall be governed by the
+          laws of cl without regards to its conflict of law provisions.
         </p>
       </section>
     </>
