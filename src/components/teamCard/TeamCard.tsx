@@ -16,6 +16,7 @@ export default function TeamCard({
           <Image
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             src={src}
+            draggable={false}
             height={320}
             width={320}
             alt="Profesional de DarSpa"

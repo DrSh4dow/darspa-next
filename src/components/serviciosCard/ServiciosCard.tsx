@@ -26,6 +26,7 @@ export default function ServiciosCard({
                     ${reverse ? "md:-right-1" : "md:-left-1"}`}
       >
         <Image
+          draggable={false}
           src={src}
           alt={alt}
           className="h-full w-full object-cover"
