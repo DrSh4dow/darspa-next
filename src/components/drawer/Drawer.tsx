@@ -1,4 +1,5 @@
 import { Fragment, useRef } from "react";
+import { useSession, signIn } from "next-auth/react";
 import { Dialog, Transition } from "@headlessui/react";
 
 type DrawerProps = {
@@ -14,6 +15,7 @@ export default function Drawer({
   isOpen,
   setIsOpen,
 }: DrawerProps) {
+  const { data: session } = useSession();
   const cancelRef = useRef(null);
   return (
     <Transition show={isOpen} as={Fragment}>
@@ -60,19 +62,26 @@ export default function Drawer({
                 </div>
               </div>
               <div className="mt-10 grid justify-center gap-4 self-center">
-                <button
-                  className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  Registrarme
-                </button>
-                <button
-                  className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
-                  ref={cancelRef}
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  Iniciar Sesion
-                </button>
+                {!session && (
+                  <>
+                    <button
+                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      Registrarme
+                    </button>
+                    <button
+                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                      ref={cancelRef}
+                      onClick={() => {
+                        signIn();
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Iniciar Sesion
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </Transition.Child>

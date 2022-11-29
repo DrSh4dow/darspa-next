@@ -1,10 +1,18 @@
 import { Fragment } from "react";
+import { useSession, signIn } from "next-auth/react";
+import Link from "next/link";
 import { Transition } from "@headlessui/react";
 import Button from "../button/Button";
 import { useInView } from "react-intersection-observer";
 
 export default function PromoBanner() {
+  const { data: session } = useSession();
   const { ref, inView } = useInView();
+
+  if (session) {
+    return <></>;
+  }
+
   return (
     <>
       <div ref={ref} className="absolute top-0 left-0 -z-50 h-[80vh] w-full" />
@@ -32,8 +40,11 @@ export default function PromoBanner() {
               </span>
             </h2>
             <div className="flex flex-wrap gap-4 lg:flex-shrink-0">
-              <Button small title="Visitar Tienda" />
+              <Link href="/tienda">
+                <Button small title="Visitar Tienda" />
+              </Link>
               <Button
+                onClick={() => signIn()}
                 backgroundClassName="bg-blue-500"
                 hoverColor="hover:bg-blue-400"
                 small

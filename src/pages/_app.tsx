@@ -1,6 +1,8 @@
+import { SessionProvider } from "next-auth/react";
 import { Analytics } from "@vercel/analytics/react";
 import { Montserrat, Nunito } from "@next/font/google";
 import { type AppType } from "next/app";
+import { type Session } from "next-auth";
 import { trpc } from "../utils/trpc";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
@@ -17,9 +19,12 @@ const nunito = Nunito({
   variable: "--font-nunito",
 });
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp: AppType<{ session: Session | null }> = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}) => {
   return (
-    <>
+    <SessionProvider session={session}>
       <main className={montserrat.variable}>
         <Header />
         <div className="h-14 w-full" />
@@ -37,7 +42,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         `}</style>
       </main>
       <Analytics />
-    </>
+    </SessionProvider>
   );
 };
 
