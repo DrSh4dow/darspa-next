@@ -15,7 +15,7 @@ export default function ComentariosSection() {
         <p className="text-center text-sm font-bold text-slate-600">
           Cientos de personas han conseguido cambios reales
         </p>
-        <div className="relative grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3">
+        <div className="relative grid h-[49rem] max-h-[60vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3">
           <div className="force-gpu animate-marquee-normal space-y-8 py-4">
             {smallComentarios.map(({ name, comment }) => {
               return (

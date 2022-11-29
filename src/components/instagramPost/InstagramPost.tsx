@@ -11,6 +11,7 @@ export default function InstagramPost({
   alt?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <>
@@ -20,9 +21,14 @@ export default function InstagramPost({
       >
         <div className="h-auto w-full overflow-hidden">
           <Image
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className={`h-full w-full ${
+              isLoaded ? "" : "animate-pulse"
+            } object-cover transition-transform duration-300 group-hover:scale-105`}
             width={320}
             height={320}
+            onLoadingComplete={() => {
+              setIsLoaded(true);
+            }}
             src={src}
             alt={alt}
           />

@@ -16,9 +16,9 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`flex shrink-0 grow-0 items-center justify-center gap-2 rounded-lg transition-colors ${
+      className={`flex shrink-0 grow-0 items-center justify-center gap-2 rounded-lg transition-shadow ${
         small ? "py-2 px-3" : "py-4 px-4"
-      } ${backgroundClassName} ${hoverColor} text-base font-black text-slate-50 shadow-md shadow-teal-900/25 lg:text-lg`}
+      } ${backgroundClassName} ${hoverColor} text-base font-black text-slate-50 shadow-md shadow-teal-900/25 hover:shadow-lg lg:text-lg`}
     >
       {title}
       {icon}

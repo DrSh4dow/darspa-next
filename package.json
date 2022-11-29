@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^1.0.1",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@next/font": "^13.0.4",

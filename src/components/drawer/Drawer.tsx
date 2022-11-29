@@ -59,17 +59,16 @@ export default function Drawer({
                   {children}
                 </div>
               </div>
-
               <div className="mt-10 grid justify-center gap-4 self-center">
                 <button
                   className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
                   onClick={() => setIsOpen(!isOpen)}
-                  ref={cancelRef}
                 >
                   Registrarme
                 </button>
                 <button
-                  className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-400 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                  className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                  ref={cancelRef}
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   Iniciar Sesion
