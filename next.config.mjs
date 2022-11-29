@@ -23,6 +23,10 @@ const config = {
         protocol: "https",
         hostname: "**.prismic.io",
       },
+      {
+        protocol: "https",
+        hostname: "**.googleusercontent.com",
+      },
     ],
   },
 };

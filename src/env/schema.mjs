@@ -11,6 +11,10 @@ export const serverSchema = z.object({
   INSTAGRAM_TOKEN: z.string(),
   EMAIL_USER: z.string(),
   EMAIL_PASS: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
+  FACEBOOK_CLIENT_ID: z.string(),
+  FACEBOOK_CLIENT_SECRET: z.string(),
   NEXTAUTH_SECRET:
     process.env.NODE_ENV === "production"
       ? z.string().min(1)

@@ -1,5 +1,5 @@
 import { Fragment, useRef } from "react";
-import { useSession, signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { Dialog, Transition } from "@headlessui/react";
 
 type DrawerProps = {
@@ -65,12 +65,6 @@ export default function Drawer({
                 {!session && (
                   <>
                     <button
-                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
-                      onClick={() => setIsOpen(!isOpen)}
-                    >
-                      Registrarme
-                    </button>
-                    <button
                       className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
                       ref={cancelRef}
                       onClick={() => {
@@ -79,6 +73,26 @@ export default function Drawer({
                       }}
                     >
                       Iniciar Sesion
+                    </button>
+                  </>
+                )}
+                {session && (
+                  <>
+                    <button
+                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      Mi Cuenta
+                    </button>
+                    <button
+                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                      ref={cancelRef}
+                      onClick={() => {
+                        signOut();
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Cerrar Sesion
                     </button>
                   </>
                 )}
