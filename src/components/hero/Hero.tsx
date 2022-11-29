@@ -58,7 +58,7 @@ export default function Hero({
           <h2 className="mb-8 text-2xl font-black text-teal-700">
             Novedades Instagram
           </h2>
-          <div className="mb-8 grid grid-cols-2 grid-rows-2 gap-6">
+          <div className="mb-8 grid w-full grid-cols-2 grid-rows-2 gap-6">
             {instagramPosts.length > 1 ? (
               instagramPosts.map((url) => <InstagramPost key={url} src={url} />)
             ) : (
