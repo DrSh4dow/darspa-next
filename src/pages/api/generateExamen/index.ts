@@ -10,8 +10,8 @@ import nodemailer from "nodemailer";
 import PDFDocument from "pdfkit";
 
 const transporter = nodemailer.createTransport({
-  host: "mail.darspa.cl",
-  port: 587,
+  host: env.EMAIL_SERVER,
+  port: Number(env.EMAIL_PORT),
   secure: false,
   auth: {
     user: env.EMAIL_USER,
@@ -100,7 +100,7 @@ async function genPdf(rawUser: any, res: NextApiResponse) {
 async function sendEmail(user: any, pdfBlob: Buffer) {
   const parsedUser = examenUserSchema.parse(user);
   const message = {
-    from: "noreply@darspa.cl",
+    from: env.EMAIL_FROM,
     to: parsedUser.correoElectronico,
     subject: `Orden de Examen - ${parsedUser.nombreCompleto}`,
     text: `Se ha generado una orden de examen para ${parsedUser.nombreCompleto} desde la pagina web, se le adjunta la orden lista para ser impresa a continuacion.

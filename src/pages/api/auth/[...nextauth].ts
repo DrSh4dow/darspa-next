@@ -1,6 +1,7 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
+import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import { env } from "../../../env/server.mjs";
@@ -19,6 +20,17 @@ export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
   providers: [
+    EmailProvider({
+      server: {
+        host: env.EMAIL_SERVER,
+        port: Number(env.EMAIL_PORT),
+        auth: {
+          user: env.EMAIL_USER,
+          pass: env.EMAIL_PASS,
+        },
+      },
+      from: env.EMAIL_FROM,
+    }),
     GoogleProvider({
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,

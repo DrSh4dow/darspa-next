@@ -7,7 +7,7 @@ import { trpc } from "../utils/trpc";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import PromoBanner from "../components/promoBanner/PromoBanner";
-
+import ShoppingCartDrawer from "../components/shoppingCartDrawer/ShoppingCartDrawer";
 import "../styles/globals.css";
 
 const montserrat = Montserrat({
@@ -31,6 +31,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <Component {...pageProps} />
         <Footer />
         <PromoBanner />
+        <ShoppingCartDrawer />
         <style global jsx>{`
           html {
             font-family: ${nunito.style.fontFamily}, ui-sans-serif, system-ui,
