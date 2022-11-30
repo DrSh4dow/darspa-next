@@ -1,6 +1,6 @@
 # Darspa Repo
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+Repo hosting the darspa infrastructure development
 
 ## What's next? How do I make an app with this?
 
