@@ -2,24 +2,44 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider             = "mysql"
+  provider     = "mysql"
   // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
   // Further reading:
   // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
   // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-  url                  = env("DATABASE_URL")
-  referentialIntegrity = "prisma"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
-model Example {
+model Sale {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  total     Int
+  isReady   Boolean  @default(false)
+
+  @@index([userId])
+  @@index([productId])
+}
+
+model Product {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  name      String   @unique
+  image     String
+  imageAlt  String
+  isActive  Boolean
+  price     Int
+  sales     Sale[]
 }
 
 // Necessary for Next auth
@@ -39,6 +59,7 @@ model Account {
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Session {
@@ -47,6 +68,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 enum Role {
@@ -63,6 +86,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          Role      @default(USER)
+  Sales         Sale[]
 }
 
 model VerificationToken {

@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import { useSession, signIn } from "next-auth/react";
 import { useAtom } from "jotai";
 import { shoppingCartOpen } from "../../atoms/index";
@@ -9,7 +10,6 @@ const products = [
   {
     id: 1,
     name: "GiftCard Masajes",
-    color: "Salmon",
     price: "$40.000",
     quantity: 1,
     imageSrc:
@@ -20,7 +20,6 @@ const products = [
   {
     id: 2,
     name: "GiftCard Presoterapia",
-    color: "Blue",
     price: "$32.00",
     quantity: 1,
     imageSrc:
@@ -90,9 +89,12 @@ export default function ShoppingCartDrawer() {
                             {products.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                  <img
-                                    src={product.imageSrc}
+                                  <Image
+                                    draggable={false}
+                                    src="/images/stones.png"
                                     alt={product.imageAlt}
+                                    width={96}
+                                    height={96}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
