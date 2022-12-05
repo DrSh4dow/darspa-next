@@ -35,10 +35,12 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   name        String   @unique
-  image       String
+  description String
+  maxQty      Int      @default(12)
+  minQty      Int      @default(1)
+  imageSrc    String
   imageAlt    String
   isActive    Boolean
-  giftCardSrc String
   price       Int
   sales       Sale[]
 }

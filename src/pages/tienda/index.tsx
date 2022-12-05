@@ -10,7 +10,6 @@ const Tienda: NextPage = () => {
     {
       id: 1,
       name: "Earthen Bottle",
-      href: "#",
       price: "48.000",
       imageSrc: "/images/stones.png",
       imageAlt:
@@ -19,7 +18,6 @@ const Tienda: NextPage = () => {
     {
       id: 2,
       name: "Nomad Tumbler",
-      href: "#",
       price: "35.000",
       imageSrc: "/images/stones.png",
       imageAlt:
@@ -28,7 +26,6 @@ const Tienda: NextPage = () => {
     {
       id: 3,
       name: "Focus Paper Refill",
-      href: "#",
       price: "89.000",
       imageSrc: "/images/stones.png",
       imageAlt:
@@ -37,7 +34,6 @@ const Tienda: NextPage = () => {
     {
       id: 4,
       name: "Machined Mechanical Pencil",
-      href: "#",
       price: "35.000",
       imageSrc: "/images/stones.png",
       imageAlt:

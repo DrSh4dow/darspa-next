@@ -1,22 +1,20 @@
 import { Fragment, useState } from "react";
-import { Dialog, RadioGroup, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
+import { formatter } from "../../utils/util";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const product = {
   name: "Basic Tee 6-Pack ",
-  price: "$192.000",
+  price: 35000,
   href: "#",
   imageSrc:
     "https://tailwindui.com/img/ecommerce-images/product-quick-preview-02-detail.jpg",
   imageAlt: "Two each of gray, white, and black shirts arranged on table.",
-  quantity: [{ value: 3 }, { value: 6 }, { value: 9 }, { value: 12 }],
+  maxQty: 12,
+  minQty: 1,
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
 };
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function ShopQuickView({
   open,
@@ -25,8 +23,7 @@ export default function ShopQuickView({
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [selectedSize, setSelectedSize] = useState(product.quantity[0]);
-
+  const [sesiones, setSesiones] = useState(product.minQty);
   function handleSubmit() {
     console.log("Submited");
   }
@@ -90,7 +87,7 @@ export default function ShopQuickView({
                         </h3>
 
                         <p className="text-2xl text-gray-900">
-                          {product.price}
+                          {formatter.format(product.price * sesiones)}
                         </p>
 
                         <div className="pt-4">
@@ -122,53 +119,19 @@ export default function ShopQuickView({
                           <div className="mt-10">
                             <div className="flex items-center justify-between">
                               <h4 className="text-sm font-medium text-gray-900">
-                                Numero de Sesiones
+                                Numero de Sesiones: {sesiones}
                               </h4>
                             </div>
-
-                            <RadioGroup
-                              value={selectedSize}
-                              onChange={setSelectedSize}
-                              className="mt-4"
-                            >
-                              <RadioGroup.Label className="sr-only">
-                                {" "}
-                                Escoge Cantidad{" "}
-                              </RadioGroup.Label>
-                              <div className="grid grid-cols-4 gap-4">
-                                {product.quantity.map((qty) => (
-                                  <RadioGroup.Option
-                                    key={qty.value}
-                                    value={qty}
-                                    className={({ active }) =>
-                                      classNames(
-                                        "cursor-pointer bg-white text-slate-900 shadow-sm",
-                                        active ? "ring-2 ring-teal-500" : "",
-                                        "group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1"
-                                      )
-                                    }
-                                  >
-                                    {({ active, checked }) => (
-                                      <>
-                                        <RadioGroup.Label as="span">
-                                          {qty.value}
-                                        </RadioGroup.Label>
-                                        <span
-                                          className={classNames(
-                                            active ? "border" : "border-2",
-                                            checked
-                                              ? "border-teal-500"
-                                              : "border-transparent",
-                                            "pointer-events-none absolute -inset-px rounded-md"
-                                          )}
-                                          aria-hidden="true"
-                                        />
-                                      </>
-                                    )}
-                                  </RadioGroup.Option>
-                                ))}
-                              </div>
-                            </RadioGroup>
+                            <input
+                              type="range"
+                              min={product.minQty}
+                              max={product.maxQty}
+                              value={sesiones}
+                              onChange={(e) =>
+                                setSesiones(Number(e.target.value))
+                              }
+                              className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-400  focus:shadow-none focus:outline-none focus:ring-0 "
+                            />
                           </div>
 
                           <button
