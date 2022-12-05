@@ -44,5 +44,10 @@ module.exports = {
       },
     },
   },
-  plugins: [rotateY, webkitFullScreen, require("@tailwindcss/forms")],
+  plugins: [
+    rotateY,
+    webkitFullScreen,
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };

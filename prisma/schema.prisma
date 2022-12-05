@@ -31,15 +31,16 @@ model Sale {
 }
 
 model Product {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  name      String   @unique
-  image     String
-  imageAlt  String
-  isActive  Boolean
-  price     Int
-  sales     Sale[]
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String   @unique
+  image       String
+  imageAlt    String
+  isActive    Boolean
+  giftCardSrc String
+  price       Int
+  sales       Sale[]
 }
 
 // Necessary for Next auth

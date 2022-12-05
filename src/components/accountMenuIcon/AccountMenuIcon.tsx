@@ -86,6 +86,21 @@ export default function AccountMenuIcon() {
                     </Link>
                   )}
                 </Menu.Item>
+                {session.user?.role === "ADMIN" && (
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link href="/admin">
+                        <button
+                          className={`${
+                            active ? "bg-teal-500 text-white" : "text-gray-900"
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                        >
+                          Administración
+                        </button>
+                      </Link>
+                    )}
+                  </Menu.Item>
+                )}
               </div>
               <div className="px-1 py-1">
                 <Menu.Item>
