@@ -1,46 +1,24 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { formatter } from "../../utils/util";
 import Image from "next/image";
 import { useState } from "react";
 import ShopQuickView from "../../components/shopQuickView/ShopQuickView";
+import * as prismic from "@prismicio/client";
 
-const Tienda: NextPage = () => {
+const Tienda: NextPage<{
+  filteredProductos: {
+    name: string;
+    price: number;
+    imageSrc: string;
+    imageAlt: string;
+    description: string;
+    id: string;
+  }[];
+}> = ({ filteredProductos }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const products = [
-    {
-      id: 1,
-      name: "Earthen Bottle",
-      price: "48.000",
-      imageSrc: "/images/stones.png",
-      imageAlt:
-        "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-    },
-    {
-      id: 2,
-      name: "Nomad Tumbler",
-      price: "35.000",
-      imageSrc: "/images/stones.png",
-      imageAlt:
-        "Olive drab green insulated bottle with flared screw lid and flat top.",
-    },
-    {
-      id: 3,
-      name: "Focus Paper Refill",
-      price: "89.000",
-      imageSrc: "/images/stones.png",
-      imageAlt:
-        "Person using a pen to cross a task off a productivity paper card.",
-    },
-    {
-      id: 4,
-      name: "Machined Mechanical Pencil",
-      price: "35.000",
-      imageSrc: "/images/stones.png",
-      imageAlt:
-        "Hand holding black machined steel mechanical pencil with brass tip and top.",
-    },
-    // More products...
-  ];
+  const [selectedProduct, setSelectedProduct] = useState(filteredProductos[0]);
+
   return (
     <>
       <Head>
@@ -71,11 +49,14 @@ const Tienda: NextPage = () => {
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="sr-only">Productos</h2>
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {products.map((product) => (
+            {filteredProductos.map((product) => (
               <figure
                 key={product.id}
                 className="group cursor-pointer"
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  setIsOpen(true);
+                  setSelectedProduct(product);
+                }}
               >
                 <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                   <Image
@@ -88,16 +69,41 @@ const Tienda: NextPage = () => {
                 </div>
                 <h3 className="mt-4 text-sm text-slate-700">{product.name}</h3>
                 <p className="mt-1 text-lg font-medium text-slate-900">
-                  ${product.price}
+                  {formatter.format(product.price)}
                 </p>
               </figure>
             ))}
           </div>
         </div>
       </section>
-      <ShopQuickView open={isOpen} setOpen={setIsOpen} />
+      <ShopQuickView
+        open={isOpen}
+        setOpen={setIsOpen}
+        product={selectedProduct}
+      />
     </>
   );
 };
+
+export async function getStaticProps() {
+  const client = prismic.createClient("darspa");
+  const productos = await client.getAllByType("producto");
+  const filteredProductos = productos.map(({ data, id }) => {
+    return {
+      name: data.name[0].text,
+      price: Number(data.price),
+      imageSrc: data.picture.url ?? "/images/stones.png",
+      imageAlt: data.picture.alt ?? "Giftcard DarSpa",
+      description: data.description[0].text ?? "",
+      id: id,
+    };
+  });
+
+  return {
+    props: {
+      filteredProductos,
+    },
+  };
+}
 
 export default Tienda;

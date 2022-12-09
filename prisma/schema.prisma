@@ -16,33 +16,16 @@ datasource db {
 }
 
 model Sale {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  productId String
-  product   Product  @relation(fields: [productId], references: [id])
-  quantity  Int
-  total     Int
-  isReady   Boolean  @default(false)
+  id                 String   @id @default(cuid())
+  createdAt          DateTime @default(now())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id])
+  productPrismicName String
+  quantity           Int
+  total              Int
+  isReady            Boolean  @default(false)
 
   @@index([userId])
-  @@index([productId])
-}
-
-model Product {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String   @unique
-  description String
-  maxQty      Int      @default(12)
-  minQty      Int      @default(1)
-  imageSrc    String
-  imageAlt    String
-  isActive    Boolean
-  price       Int
-  sales       Sale[]
 }
 
 // Necessary for Next auth

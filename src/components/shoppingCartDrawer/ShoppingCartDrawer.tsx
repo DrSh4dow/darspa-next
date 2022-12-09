@@ -1,38 +1,22 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { useSession, signIn } from "next-auth/react";
 import { useAtom } from "jotai";
-import { shoppingCartOpen } from "../../atoms/index";
+import { shoppingCartOpen, shoppingCartContent } from "../../atoms/index";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-
-const products = [
-  {
-    id: 1,
-    name: "GiftCard Masajes",
-    price: "$40.000",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "GiftCard Presoterapia",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  // More products...
-];
+import { formatter } from "../../utils/util";
 
 export default function ShoppingCartDrawer() {
   const [open, setOpen] = useAtom(shoppingCartOpen);
+  const [total, setTotal] = useState(0);
+  const [products, setProducts] = useAtom(shoppingCartContent);
   const { data: session } = useSession();
+
+  useEffect(() => {
+    const productsCopy = products.map((p) => p.price);
+    setTotal(productsCopy.reduce((prev, curr) => prev + curr, 0));
+  }, [products]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -91,10 +75,10 @@ export default function ShoppingCartDrawer() {
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <Image
                                     draggable={false}
-                                    src="/images/stones.png"
+                                    src={product.imageSrc}
                                     alt={product.imageAlt}
-                                    width={96}
-                                    height={96}
+                                    width={320}
+                                    height={320}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -103,18 +87,20 @@ export default function ShoppingCartDrawer() {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>{product.name}</h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">
+                                        {formatter.format(product.price)}
+                                      </p>
                                     </div>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">
-                                      Cantidad {product.quantity}
+                                      Cantidad {1}
                                     </p>
-
                                     <div className="flex">
                                       <button
                                         type="button"
                                         className="font-medium text-teal-600 hover:text-teal-500"
+                                        onClick={() => {}}
                                       >
                                         Eliminar
                                       </button>
@@ -131,7 +117,7 @@ export default function ShoppingCartDrawer() {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Total</p>
-                        <p>$87.000</p>
+                        <p>{formatter.format(total)}</p>
                       </div>
                       {!session && (
                         <>
