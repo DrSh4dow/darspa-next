@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import { useAtom } from "jotai";
-import { shoppingCartContent } from "../../atoms/index";
+import { shoppingCartContent, shoppingCartOpen } from "../../atoms/index";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { formatter } from "../../utils/util";
@@ -24,6 +24,7 @@ export default function ShopQuickView({
 }) {
   const [shoppingCartProducts, setShoppingCartProducts] =
     useAtom(shoppingCartContent);
+  const setShoppingCartOpen = useAtom(shoppingCartOpen)[1];
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -95,13 +96,21 @@ export default function ShopQuickView({
                         <p>{product?.description}</p>
                         <button
                           onClick={() => {
-                            if (product) {
+                            if (
+                              product &&
+                              !(
+                                shoppingCartProducts.filter(
+                                  (p) => p.id === product.id
+                                ).length > 0
+                              )
+                            ) {
                               setShoppingCartProducts([
                                 ...shoppingCartProducts,
                                 product,
                               ]);
                             }
                             setOpen(false);
+                            setTimeout(() => setShoppingCartOpen(true), 500);
                           }}
                           className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-blue-500 py-3 px-8 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >

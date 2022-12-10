@@ -93,13 +93,18 @@ export default function ShoppingCartDrawer() {
                                     </div>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">
-                                      Cantidad {1}
-                                    </p>
+                                    <p className="text-gray-500"></p>
                                     <div className="flex">
                                       <button
                                         type="button"
                                         className="font-medium text-teal-600 hover:text-teal-500"
+                                        onClick={() => {
+                                          setProducts(
+                                            products.filter(
+                                              (p) => p.id !== product.id
+                                            )
+                                          );
+                                        }}
                                       >
                                         Eliminar
                                       </button>
@@ -112,7 +117,6 @@ export default function ShoppingCartDrawer() {
                         </div>
                       </div>
                     </div>
-
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Total</p>
@@ -140,12 +144,15 @@ export default function ShoppingCartDrawer() {
                             valida su GiftCard
                           </p>
                           <div className="mt-6">
-                            <a
-                              href="#"
-                              className="flex items-center justify-center rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-600"
-                            >
-                              Pagar Via Webpay
-                            </a>
+                            {products.length > 0 ? (
+                              <span className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-600">
+                                Pagar Via Webpay
+                              </span>
+                            ) : (
+                              <span className="flex select-none items-center justify-center rounded-md border border-transparent bg-slate-400 px-6 py-3 text-base font-medium text-white ">
+                                Pagar Via Webpay
+                              </span>
+                            )}
                           </div>
                         </>
                       )}

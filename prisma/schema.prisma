@@ -21,11 +21,26 @@ model Sale {
   userId             String
   user               User     @relation(fields: [userId], references: [id])
   productPrismicName String
+  productPrismicId   String
   quantity           Int
   total              Int
   isReady            Boolean  @default(false)
 
   @@index([userId])
+}
+
+enum TransactionState {
+  CANCELED
+  TRANSIT
+  COMPLETED
+}
+
+model Transaction {
+  id        String           @id @default(cuid())
+  createdAt DateTime         @default(now())
+  state     TransactionState
+  products  Json
+  amount    Int
 }
 
 // Necessary for Next auth

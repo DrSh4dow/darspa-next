@@ -88,21 +88,25 @@ const Tienda: NextPage<{
 export async function getStaticProps() {
   const client = prismic.createClient("darspa");
   const productos = await client.getAllByType("producto");
-  const filteredProductos = productos.map(({ data, id }) => {
-    return {
-      name: data.name[0].text,
-      price: Number(data.price),
-      imageSrc: data.picture.url ?? "/images/stones.png",
-      imageAlt: data.picture.alt ?? "Giftcard DarSpa",
-      description: data.description[0].text ?? "",
-      id: id,
-    };
-  });
+  const filteredProductos = productos
+    .filter((p) => p.data.active)
+    .map(({ data, id }) => {
+      return {
+        name: data.name[0].text,
+        price: Number(data.price),
+        imageSrc: data.picture.url ?? "/images/stones.png",
+        imageAlt: data.picture.alt ?? "Giftcard DarSpa",
+        description: data.description[0].text ?? "",
+        id: id,
+      };
+    });
 
   return {
     props: {
       filteredProductos,
     },
+
+    revalidate: 86400,
   };
 }
 
