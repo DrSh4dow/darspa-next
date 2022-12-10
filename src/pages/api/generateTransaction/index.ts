@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { env } from "../../../env/server.mjs";
 import { getServerAuthSession } from "../../../server/common/get-server-auth-session";
 import {
   productsRequestSchema,
@@ -14,6 +13,7 @@ const generateTransaction = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
+  const returnUrl = `https://${req.headers.host}/api/transactionConfirmation`;
   // session verification
   const session = await getServerAuthSession({ req, res });
   if (!session || !session.user) {
@@ -84,7 +84,7 @@ const generateTransaction = async (
       prismaTransaction.id,
       prismaTransaction.sessionId,
       prismaTransaction.amount,
-      env.TRANSBANK_RETURN_URL
+      returnUrl
     );
   } catch (e) {
     console.log(e);

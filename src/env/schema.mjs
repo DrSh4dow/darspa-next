@@ -16,7 +16,6 @@ export const serverSchema = z.object({
   EMAIL_PORT: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
-  TRANSBANK_RETURN_URL: z.string(),
   FACEBOOK_CLIENT_ID: z.string(),
   FACEBOOK_CLIENT_SECRET: z.string(),
   NEXTAUTH_SECRET:
