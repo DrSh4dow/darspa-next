@@ -100,7 +100,6 @@ export default function ShoppingCartDrawer() {
                                       <button
                                         type="button"
                                         className="font-medium text-teal-600 hover:text-teal-500"
-                                        onClick={() => {}}
                                       >
                                         Eliminar
                                       </button>
