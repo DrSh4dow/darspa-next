@@ -2,7 +2,7 @@
 
 Repo hosting the darspa infrastructure development
 
-## What's next? How do I make an app with this?
+## Development Stack
 
 We try to keep this project as simple as possible, so you can start with the most basic configuration and then move on to more advanced configuration.
 
