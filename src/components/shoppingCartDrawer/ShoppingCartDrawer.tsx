@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useSession, signIn } from "next-auth/react";
 import { useAtom } from "jotai";
@@ -20,7 +20,7 @@ export default function ShoppingCartDrawer() {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={setOpen}>
+      <Dialog as="div" open={open} className="relative z-50" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-500"
