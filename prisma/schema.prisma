@@ -30,17 +30,24 @@ model Sale {
 }
 
 enum TransactionState {
-  CANCELED
-  TRANSIT
+  ABORTED
+  PENDING
   COMPLETED
 }
 
 model Transaction {
-  id        String           @id @default(cuid())
-  createdAt DateTime         @default(now())
-  state     TransactionState
-  products  Json
-  amount    Int
+  id                String           @id @default(cuid())
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  state             TransactionState @default(PENDING)
+  products          Json
+  transbankResponse Json?
+  amount            Int
+  userId            String
+  user              User             @relation(fields: [userId], references: [id])
+  sessionId         String           @default(cuid())
+
+  @@index([userId])
 }
 
 // Necessary for Next auth
@@ -79,15 +86,16 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  role          Role      @default(USER)
+  role          Role          @default(USER)
   Sales         Sale[]
+  Transactions  Transaction[]
 }
 
 model VerificationToken {

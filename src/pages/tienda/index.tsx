@@ -38,12 +38,12 @@ const Tienda: NextPage<{
       <section>
         <div className="mx-auto max-w-screen-2xl px-2 pt-20 sm:px-4">
           <h1 className="mb-2 text-center text-3xl font-black text-teal-900 lg:text-5xl">
-            Compra y Regala Nuestros Servicios
+            Compra, Imprime y Regala una Gift-Card!
           </h1>
           <p className="mb-2 text-center text-sm font-bold text-slate-600 ">
             Conoce, compra, y regala nuestros servicios mediante GiftCards!
             <br />
-            escoge la cantidad de sesiones y compra una GiftCard
+            Selecciona el diseño de tu GiftCard e Imprime tu regalo.
           </p>
         </div>
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">

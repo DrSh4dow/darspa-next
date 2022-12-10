@@ -16,6 +16,7 @@ export const serverSchema = z.object({
   EMAIL_PORT: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  TRANSBANK_RETURN_URL: z.string(),
   FACEBOOK_CLIENT_ID: z.string(),
   FACEBOOK_CLIENT_SECRET: z.string(),
   NEXTAUTH_SECRET:
@@ -52,4 +53,33 @@ export const examenUserSchema = z.object({
   diabetes: z.boolean(),
   cirugia: z.boolean(),
   byEmail: z.boolean(),
+});
+
+export const productsRequestSchema = z.array(z.string().min(1));
+export const productTransactionSchema = z
+  .object({
+    name: z.string().min(1).max(240),
+    price: z.number().positive(),
+    id: z.string().min(1).max(240),
+  })
+  .array();
+export const transbankResponse = z.object({
+  vci: z.string(),
+  amount: z.number(),
+  status: z.string(),
+  buy_order: z.string(),
+  session_id: z.string(),
+  card_detail: z
+    .object({
+      card_number: z.string(),
+    })
+    .optional(),
+  accounting_date: z.string().optional(),
+  transaction_date: z.string().optional(),
+  authorization_code: z.string().optional(),
+  payment_type_code: z.string().optional(),
+  response_code: z.number(),
+  installments_amount: z.number().optional(),
+  installments_number: z.number().optional(),
+  balance: z.number().optional(),
 });
