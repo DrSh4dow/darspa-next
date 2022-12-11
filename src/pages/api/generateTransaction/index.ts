@@ -7,13 +7,13 @@ import {
 import * as prismic from "@prismicio/client";
 import { prisma } from "../../../server/db/client";
 import { tx } from "../../../utils/transbank";
+import { env } from "../../../env/server.mjs";
 const prismicClient = prismic.createClient("darspa");
 
 const generateTransaction = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  const returnUrl = `https://${req.headers.host}/api/transactionConfirmation`;
   // session verification
   const session = await getServerAuthSession({ req, res });
   if (!session || !session.user) {
@@ -84,7 +84,7 @@ const generateTransaction = async (
       prismaTransaction.id,
       prismaTransaction.sessionId,
       prismaTransaction.amount,
-      returnUrl
+      env.TX_RETURN_URL
     );
   } catch (e) {
     console.log(e);
