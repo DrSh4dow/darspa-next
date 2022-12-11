@@ -12,23 +12,51 @@ const confirmTransaction = async (
   // session verification
   const session = await getServerAuthSession({ req, res });
   if (!session || !session.user) {
-    return res
-      .status(401)
-      .json({ success: false, message: "Sin Autorización" });
+    return res.status(401).redirect("/pagos/confirmacion");
   }
 
   // transbank token parsing
   let token;
   try {
-    token = z.string().parse(req.query.token_ws);
+    if (req.query.token_ws) {
+      token = z.string().parse(req.query.token_ws);
+    } else {
+      token = z.string().parse(req.query.TBK_TOKEN);
+      const ordenCompra = z.string().parse(req.query.TBK_ORDEN_COMPRA);
+
+      const transactionRecord = await prisma.transaction.findUnique({
+        where: {
+          id: ordenCompra,
+        },
+      });
+
+      if (!transactionRecord) {
+        throw new Error("Transaction record not found");
+      }
+
+      if (transactionRecord.userId !== session.user.id) {
+        throw new Error("Transaction record does not belong to the user");
+      }
+
+      await prisma.transaction.update({
+        where: {
+          id: transactionRecord.id,
+        },
+        data: {
+          state: "ABORTED",
+          transbankResponse: {
+            token,
+          },
+        },
+      });
+
+      return res.status(200).redirect("/pagos/confirmacion?status=aborted");
+    }
   } catch (e) {
     console.log(e);
-    return res
-      .status(401)
-      .json({ success: false, message: "Solicitud malformada" });
+    return res.status(401).redirect("/pagos/confirmacion?status=aborted");
   }
 
-  console.log(token);
   // check transaction status
   let response;
   try {
@@ -36,9 +64,7 @@ const confirmTransaction = async (
     response = transbankResponse.parse(transbankRawResponse);
   } catch (e) {
     console.log(e);
-    return res
-      .status(401)
-      .json({ success: false, message: "Error de Transbank" });
+    return res.status(401).redirect("/pagos/confirmacion?status=aborted");
   }
 
   // update db transaction record with results
@@ -48,13 +74,23 @@ const confirmTransaction = async (
     },
     data: {
       transbankResponse: response,
-      state: response.response_code === 0 ? "COMPLETED" : "ABORTED",
+      state: response.response_code === 0 ? "COMPLETED" : "FAILED",
     },
   });
 
-  console.log(transaction);
-
-  return res.status(200).json({ success: true, message: "you can be happy" });
+  if (response.response_code !== 0) {
+    return res
+      .status(200)
+      .redirect(
+        `/pagos/confirmacion?status=failed&response_code=${response.response_code}`
+      );
+  } else {
+    return res
+      .status(200)
+      .redirect(
+        `/pagos/confirmacion?status=completed&transaction_id=${transaction.id}`
+      );
+  }
 };
 
 export default confirmTransaction;
