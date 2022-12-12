@@ -99,7 +99,8 @@ export async function getStaticProps() {
         description: data.description[0].text ?? "",
         id: id,
       };
-    });
+    })
+    .sort((a, b) => (a.price < b.price ? -1 : 1));
 
   return {
     props: {

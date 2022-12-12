@@ -1,13 +1,6 @@
-import {
-  useState,
-  Fragment,
-  isValidElement,
-  Children,
-  cloneElement,
-  useRef,
-} from "react";
+import { useState, Fragment } from "react";
 import { Transition } from "@headlessui/react";
-import { ReferenceType, useFloating } from "@floating-ui/react-dom";
+import { useFloating } from "@floating-ui/react-dom";
 
 type TooltipProps = {
   tooltip: string;
@@ -47,7 +40,9 @@ export default function Tooltip({ children, tooltip }: TooltipProps) {
           }}
           className="rounded-xl bg-slate-900/50 p-2 opacity-0"
         >
-          <h2 className="text-sm font-bold text-slate-50">{tooltip}</h2>
+          <h2 className="select-none text-sm font-bold text-slate-50">
+            {tooltip}
+          </h2>
         </div>
       </Transition>
     </>
