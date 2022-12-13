@@ -36,7 +36,6 @@ const sendGiftcardEmail = async (req: NextApiRequest, res: NextApiResponse) => {
   const giftcard = z
     .object({
       name: z.string(),
-      url: z.string().url(),
       authCode: z.string(),
     })
     .safeParse(req.body);
@@ -45,7 +44,7 @@ const sendGiftcardEmail = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).json({ success: false, message: "invalid data" });
   }
 
-  const img = await QRCode.toDataURL(giftcard.data.url);
+  const img = await QRCode.toDataURL(giftcard.data.authCode);
 
   const message = {
     from: env.EMAIL_FROM,

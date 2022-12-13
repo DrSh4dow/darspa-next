@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { trpc } from "../../utils/trpc";
-import { formatter } from "../../utils/util";
+import { formatter, addDays } from "../../utils/util";
 import GiftCardModal from "../giftcardModal/GiftCardModal";
 
 export default function ComprasTable() {
@@ -23,17 +23,19 @@ export default function ComprasTable() {
       transactionsQuery.data.data
     ) {
       setSales(
-        transactionsQuery.data.data.flatMap((t) => {
-          return t.sales.map((s) => {
-            return {
-              servicio: s.productPrismicName,
-              precio: s.total,
-              cobrado: s.isReady,
-              fecha: s.createdAt,
-              authCode: s.authCode,
-            };
-          });
-        })
+        transactionsQuery.data.data
+          .flatMap((t) => {
+            return t.sales.map((s) => {
+              return {
+                servicio: s.productPrismicName,
+                precio: s.total,
+                cobrado: s.isReady,
+                fecha: s.createdAt,
+                authCode: s.authCode,
+              };
+            });
+          })
+          .sort((a, b) => (a.fecha < b.fecha ? -1 : 1))
       );
     }
   }, [transactionsQuery]);
@@ -47,7 +49,7 @@ export default function ComprasTable() {
               Servicio
             </th>
             <th scope="col" className="py-3 px-6">
-              Fecha
+              Fecha Expiración
             </th>
             <th scope="col" className="py-3 px-6">
               Precio
@@ -72,7 +74,7 @@ export default function ComprasTable() {
                     {s.servicio}
                   </th>
                   <td className="py-4 px-6">
-                    {s.fecha.toLocaleString("es-CL", {
+                    {addDays(s.fecha, 60).toLocaleString("es-CL", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
@@ -104,6 +106,7 @@ export default function ComprasTable() {
                   </td>
                   <td className="py-4 px-6">
                     <GiftCardModal
+                      cobrado={s.cobrado}
                       isRow
                       authCode={s.authCode}
                       name={s.servicio}

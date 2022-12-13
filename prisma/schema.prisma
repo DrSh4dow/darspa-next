@@ -23,7 +23,7 @@ model Sale {
   productPrismicName String
   productPrismicId   String
   total              Int
-  authCode           String      @default(cuid())
+  authCode           String      @unique @default(cuid())
   isReady            Boolean     @default(false)
 
   @@index([transactionId])

@@ -1,82 +1,78 @@
-import { PaperClipIcon } from "@heroicons/react/20/solid";
-import { useState, Fragment } from "react";
+import jsQR from "jsqr";
+import { z } from "zod";
 import { Dialog, Transition } from "@headlessui/react";
-import { QRCodeSVG } from "qrcode.react";
+import { PNG } from "pngjs";
+import { useCallback, useRef, useState, Fragment } from "react";
+import Webcam from "react-webcam";
+import Button from "../button/Button";
 
-export default function GiftCardModal({
-  authCode,
-  name,
-  isRow = false,
-  cobrado = false,
-}: {
-  authCode: string;
-  name: string;
-  isRow?: boolean;
-  cobrado?: boolean;
-}) {
+export default function QrScanner() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  const handleSendToMail = async () => {
+  const [message, setMessage] = useState("");
+  const webcamRef = useRef<Webcam>(null);
+  const capture = useCallback(async () => {
     setIsLoading(true);
-    try {
-      const res = await fetch("/api/sendGiftcardEmail", {
-        method: "POST",
-        mode: "same-origin",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          authCode,
-        }),
-      });
+    if (webcamRef.current) {
+      const dataUri = webcamRef.current.getScreenshot();
+      if (dataUri) {
+        const png = PNG.sync.read(
+          Buffer.from(dataUri.slice("data:image/png;base64,".length), "base64")
+        );
+        const code = jsQR(
+          Uint8ClampedArray.from(png.data),
+          png.width,
+          png.height
+        );
 
-      if (res.ok) {
-        setSuccess(true);
+        if (code && code.data) {
+          const authCode = z.string().safeParse(code.data);
+          if (authCode.success) {
+            try {
+              const res = await fetch("/api/giftcardConfirmation", {
+                method: "POST",
+                mode: "same-origin",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  authCode: authCode.data,
+                }),
+              });
+
+              if (res.ok) {
+                const resData = await res.json();
+                const parsedResponse = z
+                  .object({
+                    success: z.boolean(),
+                    message: z.string(),
+                  })
+                  .parse(resData);
+
+                setMessage(parsedResponse.message);
+              } else {
+                setMessage("ocurrio un error");
+              }
+            } catch (e) {
+              console.log(e);
+              setMessage("ocurrio un error");
+              setSuccess(true);
+            }
+          }
+        }
       }
-    } catch (e) {
-      console.log(e);
     }
+
+    setSuccess(true);
     setIsLoading(false);
-  };
+  }, [webcamRef]);
 
   return (
     <>
-      {isRow ? (
-        <button
-          onClick={() => setIsOpen(true)}
-          disabled={cobrado}
-          className={`font-medium  ${
-            cobrado ? "text-slate-500" : "text-blue-600 hover:underline"
-          } `}
-        >
-          Obtener GiftCard
-        </button>
-      ) : (
-        <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-          <div className="flex w-0 flex-1 items-center">
-            <PaperClipIcon
-              className="h-5 w-5 flex-shrink-0 text-gray-400"
-              aria-hidden="true"
-            />
-            <span className="ml-2 w-0 flex-1 truncate">
-              giftcard {name.trim()}
-            </span>
-          </div>
-          <div className="ml-4 flex-shrink-0">
-            <span
-              onClick={() => setIsOpen(true)}
-              className="cursor-pointer font-medium text-blue-600 hover:text-blue-500 hover:underline"
-            >
-              Obtener
-            </span>
-          </div>
-        </li>
-      )}
+      <Button title="Escanear Codigo QR" onClick={() => setIsOpen(true)} />
       <Transition show={isOpen} as={Fragment}>
         <Dialog className={"z-50"} onClose={() => setIsOpen(false)}>
           <Transition.Child
@@ -103,28 +99,36 @@ export default function GiftCardModal({
               <Dialog.Panel className="overflow-hidden rounded-xl bg-white shadow ">
                 <div className="h-full w-full p-6 sm:p-8 md:p-10">
                   <Dialog.Title className="mb-2 text-xl font-black text-teal-900 lg:text-3xl">
-                    Gift Card
+                    Escaner QR
                   </Dialog.Title>
                   <h2 className="mb-4 max-w-lg text-sm font-bold text-slate-500">
-                    Presentando el siguiente codigo QR o Codigo alfanumerico en
-                    DarSpa podra hacer valida su GiftCard de &quot;
-                    <span className="text-slate-600">{name}</span>&quot;
+                    Posicione el codigo qr al centro de la imagen y presione el
+                    boton escanear
                   </h2>
-                  <div className="flex w-full flex-wrap items-center justify-center gap-2 rounded-xl bg-white py-4 shadow">
-                    <QRCodeSVG value={authCode} />
-                    <h5 className="w-full text-center text-base font-black tracking-wider text-slate-700">
-                      {authCode}
-                    </h5>
+                  <div className=" flex items-center justify-center">
+                    <Webcam
+                      audio={false}
+                      height={520}
+                      width={520}
+                      ref={webcamRef}
+                      screenshotFormat="image/png"
+                      videoConstraints={{
+                        width: 520,
+                        height: 520,
+                        facingMode: "user",
+                      }}
+                    />
                   </div>
                 </div>
                 {success && (
-                  <h5 className="px-6 py-1 text-right text-sm font-bold text-teal-600">
-                    Correo Enviado con Exito!
+                  <h5 className="px-6 py-1 text-right text-sm font-bold text-blue-600">
+                    {message}
                   </h5>
                 )}
+
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
-                    onClick={handleSendToMail}
+                    onClick={capture}
                     disabled={isLoading}
                     className={`relative inline-flex w-full items-center justify-center rounded-md border border-transparent ${
                       isLoading
@@ -150,7 +154,7 @@ export default function GiftCardModal({
                         />
                       </svg>
                     )}
-                    {isLoading ? "Cargando..." : "Enviar a mi Correo"}
+                    {isLoading ? "Cargando..." : "Escanear"}
                   </button>
                   <button
                     type="button"
