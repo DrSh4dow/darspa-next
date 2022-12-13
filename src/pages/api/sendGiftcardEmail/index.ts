@@ -76,15 +76,22 @@ Mostrando el siguiente código QR o Alfanumérico podrás hacer válida tu Giftc
 
   try {
     console.log("SENDING MAIL GIFTCARD");
-    transporter.sendMail(message);
+    transporter.sendMail(message, (error) => {
+      if (error) {
+        console.log(error);
+        return res
+          .status(500)
+          .json({ success: false, message: "unexpected error" });
+      }
+
+      return res.status(200).json({ success: true, message: "success" });
+    });
   } catch (e) {
     console.log(e);
     return res
       .status(500)
       .json({ success: false, message: "unexpected error" });
   }
-
-  return res.status(200).json({ success: true, message: "success" });
 };
 
 export default sendGiftcardEmail;
