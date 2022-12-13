@@ -15,8 +15,10 @@ export default function GiftCardModal({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleSendToMail = async () => {
+    setIsLoading(true);
     try {
       const res = await fetch("/api/sendGiftcardEmail", {
         method: "POST",
@@ -32,10 +34,14 @@ export default function GiftCardModal({
           authCode,
         }),
       });
-      console.log(res);
+
+      if (res.ok) {
+        setSuccess(true);
+      }
     } catch (e) {
       console.log(e);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -110,6 +116,11 @@ export default function GiftCardModal({
                     </h5>
                   </div>
                 </div>
+                {success && (
+                  <h5 className="px-6 py-1 text-right text-sm font-bold text-teal-600">
+                    Correo Enviado con Exito!
+                  </h5>
+                )}
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     onClick={handleSendToMail}
