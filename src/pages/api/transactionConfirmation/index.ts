@@ -1,7 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "../../../server/common/get-server-auth-session";
 import { z } from "zod";
-import { transbankResponse } from "../../../env/schema.mjs";
+import {
+  transbankResponseSchema,
+  dbProductsSchema,
+} from "../../../env/schema.mjs";
 import { tx } from "../../../utils/transbank";
 import { prisma } from "../../../server/db/client";
 
@@ -61,7 +64,7 @@ const confirmTransaction = async (
   let response;
   try {
     const transbankRawResponse = await tx.commit(token);
-    response = transbankResponse.parse(transbankRawResponse);
+    response = transbankResponseSchema.parse(transbankRawResponse);
   } catch (e) {
     console.log(e);
     return res.status(401).redirect("/pagos/confirmacion?status=aborted");
@@ -85,6 +88,26 @@ const confirmTransaction = async (
         `/pagos/confirmacion?status=failed&response_code=${response.response_code}`
       );
   } else {
+    // create sales
+    const products = dbProductsSchema.parse(transaction.products);
+    await prisma.transaction.update({
+      where: {
+        id: transaction.id,
+      },
+      data: {
+        sales: {
+          createMany: {
+            data: products.items.map((p) => {
+              return {
+                productPrismicName: p.name,
+                productPrismicId: p.id,
+                total: p.price,
+              };
+            }),
+          },
+        },
+      },
+    });
     return res
       .status(200)
       .redirect(

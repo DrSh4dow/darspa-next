@@ -63,7 +63,10 @@ export const productTransactionSchema = z
     id: z.string().min(1).max(240),
   })
   .array();
-export const transbankResponse = z.object({
+export const dbProductsSchema = z.object({
+  items: productTransactionSchema,
+});
+export const transbankResponseSchema = z.object({
   vci: z.string(),
   amount: z.number(),
   status: z.string(),

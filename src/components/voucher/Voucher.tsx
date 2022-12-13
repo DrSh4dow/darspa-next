@@ -1,8 +1,8 @@
-import { PaperClipIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
 import { trpc } from "../../utils/trpc";
-import { transbankResponse } from "../../env/schema.mjs";
+import { transbankResponseSchema } from "../../env/schema.mjs";
 import { formatter } from "../../utils/util";
+import GiftCardModal from "../giftcardModal/GiftCardModal";
 
 // type txResponse = {
 //   vci: string;
@@ -33,7 +33,7 @@ export default function Voucher({ transactionId }: { transactionId: string }) {
 
   useEffect(() => {
     if (transactionQuery.data && transactionQuery.data.success) {
-      const txParsed = transbankResponse.safeParse(
+      const txParsed = transbankResponseSchema.safeParse(
         transactionQuery.data.data?.transbankResponse
       );
       if (txParsed.success) {
@@ -65,7 +65,7 @@ export default function Voucher({ transactionId }: { transactionId: string }) {
           Detalles De Compra
         </h3>
         <p className="mt-1 max-w-2xl text-sm text-gray-500">
-          Datos personales de transaccion y GiftCards adjuntas a la compra.
+          Datos personales de transaccion y Gift Cards adjuntas a la compra.
         </p>
       </div>
       {transactionQuery.data &&
@@ -110,52 +110,19 @@ export default function Voucher({ transactionId }: { transactionId: string }) {
               </dd>
             </div>
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">
-                Archivos Adjuntos
-              </dt>
+              <dt className="text-sm font-medium text-gray-500">Gift Cards</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                 <ul
                   role="list"
                   className="divide-y divide-gray-200 rounded-md border border-gray-200"
                 >
-                  <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                    <div className="flex w-0 flex-1 items-center">
-                      <PaperClipIcon
-                        className="h-5 w-5 flex-shrink-0 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-2 w-0 flex-1 truncate">
-                        giftcard_presoterapia.pdf
-                      </span>
-                    </div>
-                    <div className="ml-4 flex-shrink-0">
-                      <a
-                        href="#"
-                        className="font-medium text-blue-600 hover:text-blue-500"
-                      >
-                        Descargar
-                      </a>
-                    </div>
-                  </li>
-                  <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-                    <div className="flex w-0 flex-1 items-center">
-                      <PaperClipIcon
-                        className="h-5 w-5 flex-shrink-0 text-gray-400"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-2 w-0 flex-1 truncate">
-                        giftcard_dermoabrasión.pdf
-                      </span>
-                    </div>
-                    <div className="ml-4 flex-shrink-0">
-                      <a
-                        href="#"
-                        className="font-medium text-blue-600 hover:text-blue-500"
-                      >
-                        Descargar
-                      </a>
-                    </div>
-                  </li>
+                  {transactionQuery.data.data.sales.map((s) => (
+                    <GiftCardModal
+                      key={s.id}
+                      authCode={s.authCode}
+                      name={s.productPrismicName}
+                    />
+                  ))}
                 </ul>
               </dd>
             </div>

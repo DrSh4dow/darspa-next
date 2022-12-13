@@ -12,6 +12,9 @@ export const transactionRouter = router({
           where: {
             id: input,
           },
+          include: {
+            sales: true,
+          },
         });
         if (!transaction) {
           console.log("no transaction with id:", input);
