@@ -38,7 +38,7 @@
     "react-intersection-observer": "^9.4.1",
     "rut.js": "^2.1.0",
     "superjson": "1.9.1",
-    "transbank-sdk": "^4.0.0",
+    "transbank-sdk": "^3.0.2",
     "zod": "^3.18.0"
   },
   "devDependencies": {
