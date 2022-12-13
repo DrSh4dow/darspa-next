@@ -1,44 +1,73 @@
-import Image from "next/image";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
 import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import Button from "../button/Button";
+import { QRCodeSVG } from "qrcode.react";
+import { env } from "../../env/client.mjs";
 
 export default function GiftCardModal({
   authCode,
   name,
+  isRow = false,
 }: {
   authCode: string;
   name: string;
+  isRow?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSendToMail = () => {
-    console.log("enviado");
+  const handleSendToMail = async () => {
+    try {
+      const res = await fetch("/api/sendGiftcardEmail", {
+        method: "POST",
+        mode: "same-origin",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          url: `${env.NEXT_PUBLIC_CURRENT_HOSTNAME}api/giftcardConfirmation?code=${authCode}`,
+          name,
+          authCode,
+        }),
+      });
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <>
-      <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
-        <div className="flex w-0 flex-1 items-center">
-          <PaperClipIcon
-            className="h-5 w-5 flex-shrink-0 text-gray-400"
-            aria-hidden="true"
-          />
-          <span className="ml-2 w-0 flex-1 truncate">
-            giftcard {name.trim()}
-          </span>
-        </div>
-        <div className="ml-4 flex-shrink-0">
-          <span
-            onClick={() => setIsOpen(true)}
-            className="cursor-pointer font-medium text-blue-600 hover:text-blue-500 hover:underline"
-          >
-            Obtener
-          </span>
-        </div>
-      </li>
+      {isRow ? (
+        <span
+          onClick={() => setIsOpen(true)}
+          className="cursor-pointer font-medium text-blue-600 hover:underline "
+        >
+          Obtener GiftCard
+        </span>
+      ) : (
+        <li className="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+          <div className="flex w-0 flex-1 items-center">
+            <PaperClipIcon
+              className="h-5 w-5 flex-shrink-0 text-gray-400"
+              aria-hidden="true"
+            />
+            <span className="ml-2 w-0 flex-1 truncate">
+              giftcard {name.trim()}
+            </span>
+          </div>
+          <div className="ml-4 flex-shrink-0">
+            <span
+              onClick={() => setIsOpen(true)}
+              className="cursor-pointer font-medium text-blue-600 hover:text-blue-500 hover:underline"
+            >
+              Obtener
+            </span>
+          </div>
+        </li>
+      )}
       <Transition show={isOpen} as={Fragment}>
         <Dialog className={"z-50"} onClose={() => setIsOpen(false)}>
           <Transition.Child
@@ -67,13 +96,16 @@ export default function GiftCardModal({
                   <Dialog.Title className="mb-2 text-xl font-black text-teal-900 lg:text-3xl">
                     Gift Card
                   </Dialog.Title>
-                  <h2 className="mb-4 max-w-xs text-sm font-bold text-slate-500">
-                    Presentando el siguiente codigo en DarSpa podra hacer valida
-                    su GiftCard de &quot;
+                  <h2 className="mb-4 max-w-lg text-sm font-bold text-slate-500">
+                    Presentando el siguiente codigo QR o Codigo alfanumerico en
+                    DarSpa podra hacer valida su GiftCard de &quot;
                     <span className="text-slate-600">{name}</span>&quot;
                   </h2>
-                  <div className="flex h-12 w-full items-center justify-center rounded-xl bg-white shadow">
-                    <h5 className="text-base font-black tracking-wider text-slate-700">
+                  <div className="flex w-full flex-wrap items-center justify-center gap-2 rounded-xl bg-white py-4 shadow">
+                    <QRCodeSVG
+                      value={`${env.NEXT_PUBLIC_CURRENT_HOSTNAME}api/giftcardConfirmation?code=${authCode}`}
+                    />
+                    <h5 className="w-full text-center text-base font-black tracking-wider text-slate-700">
                       {authCode}
                     </h5>
                   </div>
@@ -113,7 +145,7 @@ export default function GiftCardModal({
                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                     onClick={() => setIsOpen(false)}
                   >
-                    Cancelar
+                    Cerrar
                   </button>
                 </div>
               </Dialog.Panel>

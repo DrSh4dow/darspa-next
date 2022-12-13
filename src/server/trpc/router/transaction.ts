@@ -32,4 +32,24 @@ export const transactionRouter = router({
 
       return { success: true, data: transaction };
     }),
+  getUserTransactions: protectedProcedure.query(async ({ ctx }) => {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+      include: {
+        Transactions: {
+          include: {
+            sales: true,
+          },
+        },
+      },
+    });
+
+    if (user) {
+      return { success: true, data: user.Transactions };
+    } else {
+      return { success: false };
+    }
+  }),
 });
