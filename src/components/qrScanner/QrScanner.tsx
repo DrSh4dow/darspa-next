@@ -115,7 +115,7 @@ export default function QrScanner() {
                       videoConstraints={{
                         width: 520,
                         height: 520,
-                        facingMode: "user",
+                        facingMode: "environment",
                       }}
                     />
                   </div>
