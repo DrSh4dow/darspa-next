@@ -15,7 +15,7 @@ export const formatter = new Intl.NumberFormat("es-CL", {
 });
 
 export function addDays(oldDate: Date, days: number) {
-  var date = new Date(oldDate.valueOf());
+  const date = new Date(oldDate.valueOf());
   date.setDate(date.getDate() + days);
   return date;
 }
