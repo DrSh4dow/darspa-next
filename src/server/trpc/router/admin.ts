@@ -1,6 +1,5 @@
 import { router, protectedProcedure } from "../trpc";
 import { prisma } from "../../db/client";
-import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
 export const adminRouter = router({
@@ -18,8 +17,10 @@ export const adminRouter = router({
         transactions = await prisma.transaction.findMany({
           include: {
             sales: true,
+            user: true,
           },
         });
+        console.log(transactions);
       } catch (e) {
         console.log(e);
         throw new TRPCError({
@@ -35,7 +36,8 @@ export const adminRouter = router({
           precio: s.total,
           cobrado: s.isReady,
           fecha: s.createdAt,
-          usuario: t.id,
+          usuario: t.user.email,
+          id: s.id,
         }))
       );
     }

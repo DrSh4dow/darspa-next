@@ -54,7 +54,7 @@ export default function TransactionTable() {
       </thead>
       <tbody>
         {salesQuery.data.map((s) => (
-          <tr className="border-b bg-white  ">
+          <tr key={s.id} className="border-b bg-white  ">
             <th
               scope="row"
               className="whitespace-nowrap py-4 px-6 font-medium text-gray-900 "
