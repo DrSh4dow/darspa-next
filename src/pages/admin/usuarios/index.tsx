@@ -12,12 +12,7 @@ const UsuariosAdmin: NextPage = () => {
       <>
         <Head>
           <title>Dar Spa | Accesso Denegado</title>
-          <meta
-            name="description"
-            content="En DarSpa contamos con multiples tecnicas y servicios como botox, masoterapia, tecnicas de modelado corporal no invasivo, y modelado facial"
-          />
           <link rel="icon" href="/favicon.png" />
-          <link rel="canonical" href="https://darspa.cl/servicios" />
         </Head>
         <h1 className="my-40 text-center text-3xl font-bold text-slate-800 ">
           Acceso Denegado, Debe{" "}
@@ -39,12 +34,7 @@ const UsuariosAdmin: NextPage = () => {
       <>
         <Head>
           <title>Dar Spa | Accesso Prohibido</title>
-          <meta
-            name="description"
-            content="En DarSpa contamos con multiples tecnicas y servicios como botox, masoterapia, tecnicas de modelado corporal no invasivo, y modelado facial"
-          />
           <link rel="icon" href="/favicon.png" />
-          <link rel="canonical" href="https://darspa.cl/servicios" />
         </Head>
         <h1 className="my-40 text-center text-3xl font-bold text-slate-800 ">
           Acceso Denegado, No tiene permisos para acceder a esta pagina
@@ -57,12 +47,7 @@ const UsuariosAdmin: NextPage = () => {
     <>
       <Head>
         <title>Dar Spa | Usuarios</title>
-        <meta
-          name="description"
-          content="En DarSpa contamos con multiples tecnicas y servicios como botox, masoterapia, tecnicas de modelado corporal no invasivo, y modelado facial"
-        />
         <link rel="icon" href="/favicon.png" />
-        <link rel="canonical" href="https://darspa.cl/servicios" />
       </Head>
       <AdminLayout title="Usuarios" subtitle="gestion de usuarios">
         <UsersTable />

@@ -11,12 +11,7 @@ const MiCuenta: NextPage = () => {
       <>
         <Head>
           <title>Dar Spa | Accesso Denegado</title>
-          <meta
-            name="description"
-            content="En DarSpa contamos con multiples tecnicas y servicios como botox, masoterapia, tecnicas de modelado corporal no invasivo, y modelado facial"
-          />
           <link rel="icon" href="/favicon.png" />
-          <link rel="canonical" href="https://darspa.cl/servicios" />
         </Head>
         <h1 className="my-40 text-center text-3xl font-bold text-slate-800 ">
           Acceso Denegado, Debe{" "}
@@ -37,12 +32,8 @@ const MiCuenta: NextPage = () => {
     <>
       <Head>
         <title>Dar Spa | Mis Compras</title>
-        <meta
-          name="description"
-          content="En DarSpa contamos con multiples tecnicas y servicios como botox, masoterapia, tecnicas de modelado corporal no invasivo, y modelado facial"
-        />
+        <meta name="description" content="pagina de mis compras" />
         <link rel="icon" href="/favicon.png" />
-        <link rel="canonical" href="https://darspa.cl/servicios" />
       </Head>
       <section className="mx-auto max-w-screen-xl py-20 px-2 sm:px-4">
         <h1 className="mb-10 text-left text-3xl font-black text-teal-900 lg:text-5xl">

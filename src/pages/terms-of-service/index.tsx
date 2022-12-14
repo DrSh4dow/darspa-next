@@ -6,6 +6,8 @@ export default function TermsOfService() {
       <Head>
         <title>terms of service | Dar Spa</title>
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href="https://darspa.cl/terms-of-service" />
+        <meta name="description" content="Terminos de servicio de Dar Spa" />
       </Head>
       <section className="mx-auto max-w-screen-lg [&>h2]:text-xl [&>h1]:text-2xl">
         <h1>Website Terms and Conditions of Use</h1>

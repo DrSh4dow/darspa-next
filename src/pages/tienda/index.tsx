@@ -25,15 +25,10 @@ const Tienda: NextPage<{
         <title>Dar Spa | Tienda</title>
         <meta
           name="description"
-          content="Somos un conjunto de profesionales, técnicos y 
-                   administrativos dedicados a dar respuesta integral a 
-                   algunos de los problemas emergentes mas importantes del 
-                   tiempo moderno, la falta de alimentación mas saludable, el
-                   incremento de obesidad, la perdida de la autoestima y 
-                   el deporte como estilo de vida."
+          content="Tienda de DarSpa donde podra comprar servicios via giftcards y regalarlos o utilizarlos a futuro"
         />
         <link rel="icon" href="/favicon.png" />
-        <link rel="canonical" href="https://darspa.cl" />
+        <link rel="canonical" href="https://darspa.cl/tienda" />
       </Head>
       <section>
         <div className="mx-auto max-w-screen-2xl px-2 pt-20 sm:px-4">

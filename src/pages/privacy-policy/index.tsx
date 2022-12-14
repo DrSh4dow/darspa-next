@@ -6,6 +6,8 @@ export default function PrivacyPolicy() {
       <Head>
         <title>privacy policy | Dar Spa</title>
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href="https://darspa.cl/privacy-policy" />
+        <meta name="description" content="Politica de privacidad de Dar Spa" />
       </Head>
       <section className="mx-auto max-w-screen-lg [&>h2]:text-xl [&>h1]:text-2xl">
         <h1>Privacy Policy</h1>
