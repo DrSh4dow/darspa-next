@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import { useSession, signIn } from "next-auth/react";
 import Head from "next/head";
 import AdminLayout from "../../../components/adminLayout/AdminLayout";
+import UsersTable from "../../../components/usersTable/UsersTable";
 
 const UsuariosAdmin: NextPage = () => {
   const { data: session } = useSession();
@@ -64,7 +65,7 @@ const UsuariosAdmin: NextPage = () => {
         <link rel="canonical" href="https://darspa.cl/servicios" />
       </Head>
       <AdminLayout title="Usuarios" subtitle="gestion de usuarios">
-        <h1>TO-DO: tabla de usuarios</h1>
+        <UsersTable />
       </AdminLayout>
     </>
   );
