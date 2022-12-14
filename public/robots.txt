@@ -1,3 +1,8 @@
-User-Agent: *
-Allow: /
-
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /mi-cuenta/
+Disallow: /admin/
+Disallow: /pagos/
+Disallow: /api/
+Disallow: /examenes/
+Sitemap: https://darspa.cl/sitemap.xml

@@ -1,25 +1,11 @@
 import ComentarioCard from "../comentarioCard/ComentarioCard";
-import { comentarios } from "../../utils/constants";
-import { shuffle } from "../../utils/util";
-import { useEffect, useState } from "react";
+import {
+  smallComentarios,
+  midComments,
+  bigCommentarios,
+} from "../../utils/constants";
 
 export default function ComentariosSection() {
-  const [firstCol, setFirstCol] = useState<
-    { name: string; comment: string }[] | []
-  >(comentarios);
-  const [secondCol, setSecondCol] = useState<
-    { name: string; comment: string }[] | []
-  >(comentarios);
-  const [thirdCol, setThirdCol] = useState<
-    { name: string; comment: string }[] | []
-  >(comentarios);
-
-  useEffect(() => {
-    setFirstCol(shuffle(comentarios));
-    setSecondCol(shuffle(comentarios));
-    setThirdCol(shuffle(comentarios));
-  }, []);
-
   return (
     <section className="bg-slate-100">
       <div className="mx-auto max-w-screen-2xl py-10 px-2 sm:px-4">
@@ -29,9 +15,9 @@ export default function ComentariosSection() {
         <p className="text-center text-sm font-bold text-slate-600">
           Cientos de personas han conseguido cambios reales
         </p>
-        <div className="relative grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3">
+        <div className="relative grid h-[49rem] max-h-[60vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3">
           <div className="force-gpu animate-marquee-normal space-y-8 py-4">
-            {firstCol.map(({ name, comment }) => {
+            {smallComentarios.map(({ name, comment }) => {
               return (
                 <ComentarioCard
                   name={name}
@@ -42,7 +28,7 @@ export default function ComentariosSection() {
             })}
           </div>
           <div className="force-gpu hidden animate-marquee-slow space-y-8 py-4 md:block ">
-            {secondCol.map(({ name, comment }) => {
+            {midComments.map(({ name, comment }) => {
               return (
                 <ComentarioCard
                   name={name}
@@ -53,7 +39,7 @@ export default function ComentariosSection() {
             })}
           </div>
           <div className="force-gpu hidden animate-marquee-fast space-y-8 py-4 lg:block">
-            {thirdCol.map(({ name, comment }) => {
+            {bigCommentarios.map(({ name, comment }) => {
               return (
                 <ComentarioCard
                   name={name}

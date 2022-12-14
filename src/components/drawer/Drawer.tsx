@@ -1,4 +1,5 @@
 import { Fragment, useRef } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { Dialog, Transition } from "@headlessui/react";
 
 type DrawerProps = {
@@ -14,6 +15,7 @@ export default function Drawer({
   isOpen,
   setIsOpen,
 }: DrawerProps) {
+  const { data: session } = useSession();
   const cancelRef = useRef(null);
   return (
     <Transition show={isOpen} as={Fragment}>
@@ -24,7 +26,7 @@ export default function Drawer({
         onClose={() => setIsOpen(false)}
         className="fixed inset-0 z-50 overflow-y-auto sm:hidden"
       >
-        <div className="flex h-screen w-3/4">
+        <div className="fixed flex h-screen w-3/4 webkit-fill-available">
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-in duration-300"
@@ -47,9 +49,9 @@ export default function Drawer({
             leaveTo="-translate-x-full"
           >
             <div
-              className={`z-50 flex w-full max-w-sm flex-col justify-between
+              className="z-50 flex w-full max-w-sm flex-col justify-between
                          overflow-hidden bg-slate-50 p-6 text-left align-middle
-                         shadow-xl`}
+                         shadow-xl"
             >
               <div>
                 <Dialog.Title className="mb-6 text-3xl font-bold text-teal-800 md:text-4xl">
@@ -59,15 +61,41 @@ export default function Drawer({
                   {children}
                 </div>
               </div>
-
-              <div className="mt-10 self-center">
-                <button
-                  className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 p-4 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 lg:text-lg"
-                  onClick={() => setIsOpen(!isOpen)}
-                  ref={cancelRef}
-                >
-                  Cerrar
-                </button>
+              <div className="mt-10 grid justify-center gap-4 self-center">
+                {!session && (
+                  <>
+                    <button
+                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                      ref={cancelRef}
+                      onClick={() => {
+                        signIn();
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Iniciar Sesion
+                    </button>
+                  </>
+                )}
+                {session && (
+                  <>
+                    <button
+                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                      onClick={() => setIsOpen(!isOpen)}
+                    >
+                      Mi Cuenta
+                    </button>
+                    <button
+                      className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
+                      ref={cancelRef}
+                      onClick={() => {
+                        signOut();
+                        setIsOpen(!isOpen);
+                      }}
+                    >
+                      Cerrar Sesion
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </Transition.Child>

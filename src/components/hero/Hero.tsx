@@ -1,4 +1,5 @@
 import Button from "../button/Button";
+import Tooltip from "../tooltip/Tooltip";
 import Modal from "../modal/Modal";
 import Image from "next/image";
 import InstagramPost from "../instagramPost/InstagramPost";
@@ -71,31 +72,33 @@ export default function Hero({
             )}
           </div>
           <div className="flex w-full justify-end">
-            <a
-              className="flex items-center justify-end gap-1"
-              href="https://www.instagram.com/darspa.cl/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-8 w-8 stroke-teal-600"
+            <Tooltip tooltip="Ir a Instagram">
+              <a
+                className="flex items-center justify-end gap-1"
+                href="https://www.instagram.com/darspa.cl/"
+                target="_blank"
+                rel="noreferrer"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                />
-              </svg>
-              <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
-                <path d={instagramPath} />
-              </svg>
-              <h3 className="text-lg font-black text-teal-600">darspa.cl</h3>
-            </a>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="h-8 w-8 stroke-teal-600"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                  />
+                </svg>
+                <svg className="h-8 w-8 fill-teal-600" viewBox="0 0 24 24">
+                  <path d={instagramPath} />
+                </svg>
+                <h3 className="text-lg font-black text-teal-600">darspa.cl</h3>
+              </a>
+            </Tooltip>
           </div>
         </div>
         <div className="col-start-1 flex items-center justify-start">

@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, SyntheticEvent } from "react";
+import { Fragment, useRef, useState, SyntheticEvent, useEffect } from "react";
 import { examenUserSchema } from "../../env/schema.mjs";
 import { useAtom } from "jotai";
 import { loadingAtom } from "../../atoms/index";
@@ -154,6 +154,7 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
       <Dialog
         as="div"
         className="relative z-50"
+        open={isOpen}
         initialFocus={nombreRef}
         onClose={setIsOpen}
       >
@@ -166,7 +167,7 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">

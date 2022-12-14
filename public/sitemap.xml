@@ -1,29 +1,33 @@
-<xml version="1.0" encoding="UTF-8" >
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://darspa.cl/</loc>
-    <lastmod>2022-11-26T02:38:38+00:00</lastmod>
-    <priority>1.00</priority>
-  </url>
-    <url>
-    <loc>https://darspa.cl/noticias</loc>
-    <lastmod>2022-11-26T02:38:38+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://darspa.cl/nosotros</loc>
-    <lastmod>2022-11-26T02:38:38+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://darspa.cl/servicios</loc>
-    <lastmod>2022-11-26T02:38:38+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://darspa.cl/examenes</loc>
-    <lastmod>2022-11-26T02:38:38+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  </urlset>
-</xml>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://darspa.cl/</loc>
+	<lastmod>2022-12-10T15:31:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://darspa.cl/tienda</loc>
+	<lastmod>2022-12-10T15:31:53+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://darspa.cl/noticias</loc>
+	<lastmod>2022-12-10T15:31:53+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://darspa.cl/nosotros</loc>
+	<lastmod>2022-12-10T15:31:53+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://darspa.cl/servicios</loc>
+	<lastmod>2022-12-10T15:31:53+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://darspa.cl/examenes</loc>
+	<lastmod>2022-12-10T15:31:53+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+</urlset>

@@ -24,7 +24,7 @@ export default function NovedadesSection({
         </div>
 
         <a
-          className="flex items-center justify-start gap-1"
+          className="inline-flex items-center justify-start gap-1"
           href="https://www.instagram.com/darspa.cl/"
           target="_blank"
           rel="noreferrer"
