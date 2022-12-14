@@ -1,6 +1,7 @@
 import { router, protectedProcedure } from "../trpc";
 import { prisma } from "../../db/client";
 import { z } from "zod";
+import { TRPCError } from "@trpc/server";
 
 export const transactionRouter = router({
   getTransactionData: protectedProcedure
@@ -32,7 +33,7 @@ export const transactionRouter = router({
 
       return { success: true, data: transaction };
     }),
-  getUserTransactions: protectedProcedure.query(async ({ ctx }) => {
+  getUserSales: protectedProcedure.query(async ({ ctx }) => {
     const user = await prisma.user.findUnique({
       where: {
         id: ctx.session.user.id,
@@ -47,9 +48,24 @@ export const transactionRouter = router({
     });
 
     if (user) {
-      return { success: true, data: user.Transactions };
+      const sales = user.Transactions.flatMap((t) => {
+        return t.sales.map((s) => {
+          return {
+            servicio: s.productPrismicName,
+            precio: s.total,
+            cobrado: s.isReady,
+            fecha: s.createdAt,
+            authCode: s.authCode,
+          };
+        });
+      }).sort((a, b) => (a.fecha < b.fecha ? -1 : 1));
+      return sales;
     } else {
-      return { success: false };
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: "user does not exist",
+        cause: "user does not exist",
+      });
     }
   }),
 });

@@ -93,6 +93,16 @@ export default function Header() {
           >
             Examenes
           </Link>
+          <Link
+            href="/tienda"
+            className={`hidden min-[864px]:inline ${
+              router.pathname.startsWith("/tienda")
+                ? "text-blue-700"
+                : "hover:text-teal-700"
+            }`}
+          >
+            Tienda
+          </Link>
         </nav>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="/tienda">
