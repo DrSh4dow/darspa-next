@@ -47,9 +47,10 @@ const giftcardConfirmation = async (
 
   // verify sale isReady
   if (sale.isReady) {
-    return res
-      .status(200)
-      .json({ success: true, message: "La venta ya se encuentra cobrada" });
+    return res.status(200).json({
+      success: true,
+      message: `La venta de ${sale.productPrismicName} ya se encuentra cobrada`,
+    });
   }
 
   const currentDate = new Date();
@@ -76,9 +77,10 @@ const giftcardConfirmation = async (
     return res.status(200).json({ success: false, message: "error de prisma" });
   }
 
-  return res
-    .status(200)
-    .json({ success: true, message: "La venta se cobro con exito!" });
+  return res.status(200).json({
+    success: true,
+    message: `La venta de ${sale.productPrismicName} se cobro con exito!`,
+  });
 };
 
 export default giftcardConfirmation;
