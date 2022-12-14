@@ -135,6 +135,9 @@ export default function PrivacyPolicy() {
             <p>First name and last name</p>
           </li>
           <li>
+            <p>Profile Picture</p>
+          </li>
+          <li>
             <p>Usage Data</p>
           </li>
         </ul>
