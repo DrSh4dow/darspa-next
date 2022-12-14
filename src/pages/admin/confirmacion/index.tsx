@@ -3,6 +3,7 @@ import { useSession, signIn } from "next-auth/react";
 import Head from "next/head";
 import AdminLayout from "../../../components/adminLayout/AdminLayout";
 import QrScanner from "../../../components/qrScanner/QrScanner";
+import AlfanumericConfirmation from "../../../components/alfanumericConfirmation/AlfanumericConfirmation";
 
 const ConfirmacionAdmin: NextPage = () => {
   const { data: session } = useSession();
@@ -71,8 +72,13 @@ const ConfirmacionAdmin: NextPage = () => {
         <h3 className="mb-4 font-bold text-slate-600">
           Seleccione via de confirmacion:{" "}
         </h3>
-        <div>
-          <QrScanner />
+        <div className="flex flex-wrap gap-2">
+          <div className="w-full">
+            <QrScanner />
+          </div>
+          <div className="w-full">
+            <AlfanumericConfirmation />
+          </div>
         </div>
       </AdminLayout>
     </>

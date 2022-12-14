@@ -4,25 +4,6 @@ import { transbankResponseSchema } from "../../env/schema.mjs";
 import { formatter } from "../../utils/util";
 import GiftCardModal from "../giftcardModal/GiftCardModal";
 
-// type txResponse = {
-//   vci: string;
-//   amount: number;
-//   status: string;
-//   buy_order: string;
-//   session_id: string;
-//   card_detail?: {
-//     card_number: string;
-//   };
-//   accounting_date?: string;
-//   transaction_date?: string;
-//   authorization_code?: string;
-//   payment_type_code?: string;
-//   response_code: number;
-//   installments_amount?: number;
-//   installments_number?: number;
-//   balance?: number;
-// };
-
 export default function Voucher({ transactionId }: { transactionId: string }) {
   const [date, setDate] = useState("");
   const [price, setPrice] = useState("");
@@ -58,6 +39,7 @@ export default function Voucher({ transactionId }: { transactionId: string }) {
       }
     }
   }, [transactionQuery]);
+
   return (
     <div className="overflow-hidden bg-white shadow sm:rounded-lg">
       <div className="px-4 py-5 sm:px-6">
