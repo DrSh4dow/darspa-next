@@ -42,7 +42,7 @@ export default function Header() {
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-          <h3 className="text-sm font-bold text-teal-600">Menu</h3>
+          <h3 className="text-sm font-bold text-teal-600">Menú</h3>
         </div>
         <nav className="hidden items-center justify-between gap-4 text-2xl font-bold text-teal-600 transition-colors duration-300 md:flex ">
           <Link
@@ -91,7 +91,7 @@ export default function Header() {
                 : "hover:text-teal-700"
             }
           >
-            Examenes
+            Exámenes
           </Link>
           <Link
             href="/tienda"
@@ -158,7 +158,7 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <Drawer isOpen={isOpen} setIsOpen={setIsOpen} title="Menu">
+      <Drawer isOpen={isOpen} setIsOpen={setIsOpen} title="Menú">
         <Link
           href="/"
           onClick={() => setIsOpen(false)}
@@ -210,7 +210,7 @@ export default function Header() {
               : "hover:text-teal-700"
           }
         >
-          Examenes
+          Exámenes
         </Link>
         <Link
           onClick={() => setIsOpen(false)}

@@ -51,7 +51,7 @@ export default function SobreNosotrosSection() {
           Modelado Corporal
         </h4>
         <h5 className="mb-4 text-center text-xs font-bold text-slate-600 sm:text-sm md:mb-6 lg:mb-12">
-          correción localizada, cicatrices no estéticas, flacidez
+          Corrección localizada, cicatrices no estéticas, flacidez
         </h5>
         <div className="mx-auto mb-4 h-[2px] w-56 bg-teal-600 sm:w-80 md:mb-6 md:w-96 lg:mb-12 lg:w-[640px]" />
         <h4 className="mb-1 text-center font-montserrat text-4xl font-bold text-slate-900">

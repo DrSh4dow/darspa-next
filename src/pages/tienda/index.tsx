@@ -38,7 +38,7 @@ const Tienda: NextPage<{
           <p className="mb-2 text-center text-sm font-bold text-slate-600 ">
             Conoce, compra, y regala nuestros servicios mediante GiftCards!
             <br />
-            Selecciona el diseño de tu GiftCard e Imprime tu regalo.
+            Muestra el QR de tu GiftCard y cobra tu regalo.
           </p>
         </div>
         <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
