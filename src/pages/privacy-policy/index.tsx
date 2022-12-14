@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
       </Head>
       <section className="mx-auto max-w-screen-lg [&>h2]:text-xl [&>h1]:text-2xl">
         <h1>Privacy Policy</h1>
-        <p>Last updated: November 25, 2022</p>
+        <p>Last updated: December 14, 2022</p>
         <p>
           This Privacy Policy describes Our policies and procedures on the
           collection, use and disclosure of Your information when You use the
@@ -133,12 +133,6 @@ export default function PrivacyPolicy() {
           </li>
           <li>
             <p>First name and last name</p>
-          </li>
-          <li>
-            <p>Phone number</p>
-          </li>
-          <li>
-            <p>Address, State, Province, ZIP/Postal code, City</p>
           </li>
           <li>
             <p>Usage Data</p>

@@ -1,4 +1,5 @@
 import { facebookPath, instagramPath, whatsappPath } from "../../utils/svgPath";
+import Link from "next/link";
 import Image from "next/image";
 import logoFooter from "../../../public/images/logo-footer.png";
 import CTA from "../../components/cta/CTA";
@@ -15,7 +16,7 @@ export default function Footer() {
               <Image src={logoFooter} alt="alcanza tu peso ideal con darspa" />
             </div>
             <div className="col-span-2 flex items-center justify-center sm:col-span-1">
-              <div className="grid grid-cols-2 items-center justify-center gap-4 sm:gap-2 md:gap-6 lg:gap-8">
+              <div className="grid grid-cols-2 items-center justify-center gap-4 sm:grid-cols-3 sm:gap-2 md:gap-6 lg:gap-8">
                 <div>
                   <h4 className="font-bold text-blue-600">WhatsApp</h4>
                   <h5 className="text-sm font-bold text-teal-600">
@@ -41,6 +42,22 @@ export default function Footer() {
                   <h5 className="text-sm font-bold text-teal-600">
                     8:00hrs - 20:00hrs
                   </h5>
+                </div>
+                <div>
+                  <Link
+                    href={"/privacy-policy"}
+                    className="font-bold text-blue-600 hover:underline"
+                  >
+                    Politica de Privacidad
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    href={"/terms-of-service"}
+                    className="font-bold text-blue-600 hover:underline"
+                  >
+                    Terminos & Condiciones
+                  </Link>
                 </div>
               </div>
             </div>
