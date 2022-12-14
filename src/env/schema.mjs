@@ -19,6 +19,8 @@ export const serverSchema = z.object({
   FACEBOOK_CLIENT_ID: z.string(),
   FACEBOOK_CLIENT_SECRET: z.string(),
   TX_RETURN_URL: z.string().url(),
+  TX_API_KEY_SECRET: z.string(),
+  TX_API_KEY_ID: z.string(),
   NEXTAUTH_SECRET:
     process.env.NODE_ENV === "production"
       ? z.string().min(1)
