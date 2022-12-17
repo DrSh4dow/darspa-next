@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { trpc } from "../../utils/trpc";
 import { transbankResponseSchema } from "../../env/schema.mjs";
-import { formatter } from "../../utils/util";
+import { formatter, addDays } from "../../utils/util";
 import GiftCardModal from "../giftcardModal/GiftCardModal";
 
 export default function Voucher({ transactionId }: { transactionId: string }) {
@@ -100,6 +100,10 @@ export default function Voucher({ transactionId }: { transactionId: string }) {
                 >
                   {transactionQuery.data.data.sales.map((s) => (
                     <GiftCardModal
+                      expirationDate={addDays(
+                        s.createdAt,
+                        60
+                      ).toLocaleDateString("es-CL")}
                       key={s.id}
                       authCode={s.authCode}
                       name={s.productPrismicName}

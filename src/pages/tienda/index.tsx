@@ -4,7 +4,7 @@ import { formatter } from "../../utils/util";
 import Image from "next/image";
 import { useState } from "react";
 import ShopQuickView from "../../components/shopQuickView/ShopQuickView";
-import * as prismic from "@prismicio/client";
+import { prismicClient as client } from "../../utils/prismic";
 
 const Tienda: NextPage<{
   filteredProductos: {
@@ -81,7 +81,6 @@ const Tienda: NextPage<{
 };
 
 export async function getStaticProps() {
-  const client = prismic.createClient("darspa");
   const productos = await client.getAllByType("producto");
   const filteredProductos = productos
     .filter((p) => p.data.active)

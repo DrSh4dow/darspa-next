@@ -73,6 +73,9 @@ export default function ComprasTable() {
                     </td>
                     <td className="py-4 px-6">
                       <GiftCardModal
+                        expirationDate={addDays(s.fecha, 60).toLocaleDateString(
+                          "es-CL"
+                        )}
                         cobrado={s.cobrado}
                         isRow
                         authCode={s.authCode}

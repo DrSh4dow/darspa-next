@@ -4,11 +4,10 @@ import {
   productsRequestSchema,
   productTransactionSchema,
 } from "../../../env/schema.mjs";
-import * as prismic from "@prismicio/client";
 import { prisma } from "../../../server/db/client";
 import { tx } from "../../../utils/transbank";
 import { env } from "../../../env/server.mjs";
-const prismicClient = prismic.createClient("darspa");
+import { prismicClient } from "../../../utils/prismic";
 
 const generateTransaction = async (
   req: NextApiRequest,

@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import TeamCard from "../../components/teamCard/TeamCard";
-import * as prismic from "@prismicio/client";
+import { prismicClient as client } from "../../utils/prismic";
 
 const Nosotros: NextPage<{
   filteredProfesionales: {
@@ -82,7 +82,6 @@ const Nosotros: NextPage<{
 };
 
 export async function getStaticProps() {
-  const client = prismic.createClient("darspa");
   const profesionales = await client.getAllByType("resumen_profesional");
   const filteredProfesionales = profesionales
     .map(({ data }) => {

@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import NoticiaCard from "../../components/noticiaCard/NoticiaCard";
-import * as prismic from "@prismicio/client";
 import { months } from "../../utils/constants";
+import { prismicClient as client } from "../../utils/prismic";
 
 const Noticias: NextPage<{
   filteredNoticias: {
@@ -54,7 +54,6 @@ const Noticias: NextPage<{
 };
 
 export async function getStaticProps() {
-  const client = prismic.createClient("darspa");
   const noticias = await client.getAllByType("noticia", {
     orderings: {
       field: "document.first_publication_date",
