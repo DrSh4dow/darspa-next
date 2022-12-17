@@ -1,5 +1,6 @@
 import { Fragment, useRef } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 import { Dialog, Transition } from "@headlessui/react";
 
 type DrawerProps = {
@@ -78,12 +79,13 @@ export default function Drawer({
                 )}
                 {session && (
                   <>
-                    <button
+                    <Link
+                      href="/mi-cuenta"
                       className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-teal-500 py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
-                      onClick={() => setIsOpen(!isOpen)}
+                      onClick={() => setIsOpen(false)}
                     >
-                      Mi Cuenta
-                    </button>
+                      Mis Compras
+                    </Link>
                     <button
                       className="flex shrink-0 grow-0 items-center justify-center gap-2 rounded-xl bg-blue-500  py-3 px-10 text-base font-black text-slate-50 shadow-md shadow-teal-900/25 ring-teal-600 lg:text-lg"
                       ref={cancelRef}
