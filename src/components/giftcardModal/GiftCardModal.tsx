@@ -165,8 +165,11 @@ export default function GiftCardModal({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-              <Dialog.Panel className="overflow-hidden rounded-xl bg-white shadow ">
+            <div
+              className="fixed inset-0 z-50 flex
+              items-center justify-center p-4"
+            >
+              <Dialog.Panel className="max-h-[90vh] overflow-hidden overflow-y-auto rounded-xl bg-white shadow ">
                 {isSelectionOpen ? (
                   <>
                     <div className="h-full w-full p-6 sm:p-8 md:p-10">
@@ -191,7 +194,7 @@ export default function GiftCardModal({
                             >
                               {({ checked }) => (
                                 <div
-                                  className={`relative h-64 w-80 cursor-pointer overflow-hidden rounded-md ${
+                                  className={`relative h-48 w-60 cursor-pointer overflow-hidden  rounded-md md:h-64 md:w-80 ${
                                     checked ? "border-2 ring-4" : "border"
                                   } p-1 shadow transition-shadow hover:shadow-lg`}
                                 >
@@ -321,7 +324,7 @@ export default function GiftCardModal({
                           isLoading
                             ? "bg-slate-300"
                             : "bg-blue-500 hover:bg-blue-600"
-                        }  px-4 py-2 text-base font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm`}
+                        }  mt-3 px-4 py-2 text-base font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:mt-0 sm:w-auto sm:text-sm `}
                       >
                         Seleccionar Diseño
                       </button>

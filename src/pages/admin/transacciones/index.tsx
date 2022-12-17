@@ -50,7 +50,9 @@ const TransaccionesAdmin: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <AdminLayout title="Transacciones" subtitle="coleccion de transacciones">
-        <TransactionTable />
+        <div className="w-full overflow-x-auto">
+          <TransactionTable />
+        </div>
       </AdminLayout>
     </>
   );

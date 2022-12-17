@@ -50,7 +50,9 @@ const UsuariosAdmin: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <AdminLayout title="Usuarios" subtitle="gestion de usuarios">
-        <UsersTable />
+        <div className="w-full overflow-x-auto">
+          <UsersTable />
+        </div>
       </AdminLayout>
     </>
   );
