@@ -43,8 +43,6 @@ async function genPdf(rawUser: any, res: NextApiResponse) {
     months[Number(currentIsoDate.split("T")[0]?.split("-")[1]) - 1]
   }-${currentIsoDate.split("T")[0]?.split("-")[0]}`;
 
-  console.log(formatedFecha);
-
   const laborat =
     paciente.cirugia || paciente.diabetes
       ? imagenLaboratorioTwo

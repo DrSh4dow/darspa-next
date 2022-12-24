@@ -38,26 +38,31 @@ const Home: NextPage<{ instagramPosts: string[] }> = ({ instagramPosts }) => {
 export const getStaticProps: GetStaticProps<{
   instagramPosts: string[];
 }> = async () => {
-  const urls: string[] = [];
+  let urls: string[] = [];
   const instagramToken = env.INSTAGRAM_TOKEN;
 
   try {
     const res = await fetch(
-      `https://graph.instagram.com/me/media?fields=id&limit=4&access_token=${instagramToken}`
+      `https://graph.instagram.com/me/media?fields=id,media_type,media_url&limit=10&access_token=${instagramToken}`
     );
 
     if (res.ok) {
       const data = await res.json();
-      const idArray: { id: string }[] = data.data;
-      for (let i = 0; i < idArray.length; i++) {
-        const mediaRes = await fetch(
-          `https://graph.instagram.com/${idArray[i]?.id}?fields=media_url&access_token=${instagramToken}`
-        );
-        if (mediaRes.ok) {
-          const postRawData: { media_url: string } = await mediaRes.json();
-          urls.push(postRawData.media_url);
+      const resData: {
+        id: string;
+        media_type: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
+        media_url: string;
+      }[] = data.data;
+
+      let counter = 0;
+      urls = resData.flatMap((p) => {
+        if (p.media_type === "IMAGE" && counter < 4) {
+          counter++;
+          return p.media_url;
+        } else {
+          return [];
         }
-      }
+      });
     }
   } catch (e) {
     console.log("some unexpected error occurred: ", e);

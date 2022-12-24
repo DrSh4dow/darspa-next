@@ -20,7 +20,6 @@ export const adminRouter = router({
             user: true,
           },
         });
-        console.log(transactions);
       } catch (e) {
         console.log(e);
         throw new TRPCError({
