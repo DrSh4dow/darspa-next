@@ -73,6 +73,12 @@ const Admin: NextPage = () => {
           >
             Confirmar Codigo
           </Link>
+          <Link
+            href="/admin/generacion"
+            className="flex h-12 w-full items-center bg-white px-4 font-black text-slate-700  hover:bg-slate-100"
+          >
+            Generar Gift Card
+          </Link>
         </nav>
       </AdminLayout>
     </>
