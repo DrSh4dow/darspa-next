@@ -1,7 +1,9 @@
 {
   "name": "darspa-next",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "license": "GPL-3.0-or-later",
+  "author": "Daniel Moretti <daniel.morettiv@gmail.com> (https://danielmoretti.com/)",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
