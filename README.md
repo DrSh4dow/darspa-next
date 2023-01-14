@@ -4,7 +4,7 @@ Repo hosting the darspa website.
 
 ## Development Stack
 
-Next.js + TailwindCSS + Prismic + Prisma + NextAuth + TRCP
+Next.js + Typescript + TailwindCSS + Prismic + Prisma + NextAuth + TRCP
 
 ## About the Code
 
