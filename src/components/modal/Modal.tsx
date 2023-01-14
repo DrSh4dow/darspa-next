@@ -111,7 +111,7 @@ export default function Modal({ isOpen, setIsOpen }: ModalProps) {
       });
 
       if (res.ok) {
-        const data = await res.blob();
+        const data = await res.blob()
         setIsLoading(false);
         setIsReady(true);
 

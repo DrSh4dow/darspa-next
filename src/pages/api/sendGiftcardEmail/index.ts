@@ -3,17 +3,7 @@ import QRCode from "qrcode";
 import { z } from "zod";
 import { env } from "../../../env/server.mjs";
 import { getServerAuthSession } from "../../../server/common/get-server-auth-session";
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransport({
-  host: env.EMAIL_SERVER,
-  port: Number(env.EMAIL_PORT),
-  secure: false,
-  auth: {
-    user: env.EMAIL_USER,
-    pass: env.EMAIL_PASS,
-  },
-});
+import { transporter } from "../../../utils/mailTransporter";
 
 const sendGiftcardEmail = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerAuthSession({ req, res });
