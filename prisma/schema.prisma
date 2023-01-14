@@ -18,8 +18,8 @@ datasource db {
 model Sale {
   id                 String      @id @default(cuid())
   createdAt          DateTime    @default(now())
-  transactionId      String
-  transaction        Transaction @relation(fields: [transactionId], references: [id])
+  transactionId      String?
+  transaction        Transaction? @relation(fields: [transactionId], references: [id])
   productPrismicName String
   productPrismicId   String
   total              Int

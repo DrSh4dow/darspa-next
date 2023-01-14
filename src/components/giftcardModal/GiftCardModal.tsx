@@ -12,18 +12,21 @@ export default function GiftCardModal({
   expirationDate,
   isRow = false,
   cobrado = false,
+  customMail = false,
 }: {
   authCode: string;
   expirationDate: string;
   name: string;
   isRow?: boolean;
   cobrado?: boolean;
+  customMail?: boolean;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [isSelectionOpen, setIsSelectionOpen] = useState(false);
   const [selectedBackground, setSelectedBackground] = useState("");
+  const [mail, setMail] = useState("");
   const [error, setError] = useState("");
 
   const backgroundsQuery = trpc.general.getGiftcardBackgrounds.useQuery();
@@ -42,6 +45,8 @@ export default function GiftCardModal({
         body: JSON.stringify({
           name,
           authCode,
+          customMail,
+          mail,
         }),
       });
 
@@ -281,6 +286,27 @@ export default function GiftCardModal({
                         diseños para imprimir en formato PDF
                       </h2>
                     </div>
+                    {customMail && (
+                      <div className="flex -mt-12 w-full justify-end p-4">
+                        <div className="w-64">
+                          <label
+                            htmlFor="email"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Correo Electronico
+                          </label>
+                          <input
+                            type="text"
+                            name="email"
+                            value={mail}
+                            required
+                            onChange={(e) => setMail(e.target.value)}
+                            autoComplete="email"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          />
+                        </div>
+                      </div>
+                    )}
 
                     {success && (
                       <h5 className="px-6 py-1 text-right text-sm font-bold text-teal-600">
@@ -315,7 +341,11 @@ export default function GiftCardModal({
                             />
                           </svg>
                         )}
-                        {isLoading ? "Cargando..." : "Enviar a mi Correo"}
+                        {isLoading
+                          ? "Cargando..."
+                          : customMail
+                          ? "Enviar Por Correo"
+                          : "Enviar a mi Correo"}
                       </button>
                       <button
                         onClick={() => setIsSelectionOpen(true)}

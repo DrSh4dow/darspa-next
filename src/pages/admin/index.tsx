@@ -79,6 +79,12 @@ const Admin: NextPage = () => {
           >
             Generar Gift Card
           </Link>
+          <Link
+            href="/admin/giftcards-generadas"
+            className="flex h-12 w-full items-center bg-slate-50 px-4 font-black text-slate-700  hover:bg-slate-100"
+          >
+            Gift Card Generadas
+          </Link>
         </nav>
       </AdminLayout>
     </>

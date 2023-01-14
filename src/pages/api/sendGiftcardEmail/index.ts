@@ -16,6 +16,8 @@ const sendGiftcardEmail = async (req: NextApiRequest, res: NextApiResponse) => {
     .object({
       name: z.string(),
       authCode: z.string(),
+      customMail: z.boolean(),
+      mail: z.string().email(),
     })
     .safeParse(req.body);
 
@@ -27,7 +29,7 @@ const sendGiftcardEmail = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const message = {
     from: env.EMAIL_FROM,
-    to: session.user.email,
+    to: giftcard.data.customMail ? giftcard.data.mail : session.user.email,
     attachDataUrls: true,
     subject: `Gift Card - ${giftcard.data.name}`,
     text: `Disfruta tu giftcard, Mostrando el siguiente código QR o Alfanumérico podrás hacer válida tu Giftcard: ${giftcard.data.authCode}`,
