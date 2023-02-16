@@ -50,6 +50,9 @@ export default function TransactionTable() {
           <th scope="col" className="py-3 px-6">
             Usuario
           </th>
+          <th scope="col" className="py-3 px-6">
+            Codigo Alfanumerico
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -84,6 +87,7 @@ export default function TransactionTable() {
               )}
             </td>
             <td className="py-4 px-6">{s.usuario}</td>
+            <td className="py-4 px-6">{s.giftcardCode}</td>
           </tr>
         ))}
       </tbody>

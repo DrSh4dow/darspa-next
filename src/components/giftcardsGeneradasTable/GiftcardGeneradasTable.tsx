@@ -47,6 +47,9 @@ export default function GiftcardGeneradasTable() {
           <th scope="col" className="py-3 px-6">
             Cobrado
           </th>
+          <th scope="col" className="py-3 px-6">
+            Codigo Alfanumerico
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -80,6 +83,7 @@ export default function GiftcardGeneradasTable() {
                 <span>No</span>
               )}
             </td>
+            <td className="py-4 px-6">{s.authCode}</td>
           </tr>
         ))}
       </tbody>

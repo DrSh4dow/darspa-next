@@ -39,6 +39,7 @@ export const adminRouter = router({
           fecha: s.createdAt,
           usuario: t.user.email,
           id: s.id,
+          giftcardCode: s.authCode,
         }))
       );
     }
